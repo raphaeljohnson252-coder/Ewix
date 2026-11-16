@@ -4,7 +4,7 @@
 @theme {
   --color-obsidian: #0A0A0A;
   --color-obsidian-surface: #121215;
-  --color-obsidian-elevated: #18181D;
+  --color-obsidian-elevated: #18181C;
   --color-obsidian-border: #242429;
   --color-obsidian-border-strong: #34343D;
 
@@ -22,6 +22,7 @@
 @layer base {
   :root {
     --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-editorial: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
@@ -33,6 +34,10 @@
 
   h1, h2, h3, h4, .font-display {
     font-family: var(--font-display);
+  }
+
+  .font-editorial {
+    font-family: var(--font-editorial);
   }
 
   .font-mono-data {
@@ -65,6 +70,15 @@
   }
 }
 
+@keyframes studioMarquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .glucose-trace-path {
   stroke-dasharray: var(--trace-length, 760);
   stroke-dashoffset: var(--trace-length, 760);
@@ -76,6 +90,16 @@
   transform-origin: center;
   transform-box: fill-box;
   animation: traceEndpointFade 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.studio-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: studioMarquee 36s linear infinite;
+}
+
+.studio-marquee-track:hover {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -90,6 +114,9 @@
     animation: none;
     opacity: 1;
     transform: none;
+  }
+  .studio-marquee-track {
+    animation: none;
   }
 }
 

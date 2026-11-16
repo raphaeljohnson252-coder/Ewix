@@ -22,6 +22,7 @@ import { RouteLink, useRouter } from '../router';
 
 const SERVICES = [
   {
+    index: '01',
     title: 'Websites',
     description: 'Clear, fast sites with booking or ordering buttons.',
     price: 'Starting from AUD $[price].',
@@ -29,6 +30,7 @@ const SERVICES = [
     to: '/websites' as RoutePath,
   },
   {
+    index: '02',
     title: 'Flyers & Print',
     description: 'Flyers, posters and handouts that match your brand.',
     price: 'Starting from AUD $[price].',
@@ -36,6 +38,7 @@ const SERVICES = [
     to: '/flyers-and-print' as RoutePath,
   },
   {
+    index: '03',
     title: 'AI Videos',
     description: 'Short explainers and social clips in plain language.',
     price: 'Starting from AUD $[price].',
@@ -67,6 +70,14 @@ const STEPS = [
   },
 ];
 
+const MARQUEE_ITEMS = [
+  'Websites for health clinics',
+  'Flyers & Print',
+  'Plain-language AI Videos',
+  'Designed for Australian health businesses',
+  'Free homepage mockup',
+];
+
 export function HomePage() {
   const { navigate } = useRouter();
   const [selectedProject, setSelectedProject] =
@@ -86,13 +97,13 @@ export function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <PageHeroBackdrop imageSrc={homeBackdrop} />
-        <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-28 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-12">
+        <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
             <HeroEntrance className="space-y-6 lg:col-span-6">
-              <p className="text-sm font-medium tracking-wide text-champagne-deep dark:text-champagne-light">
-                {BUSINESS_NAME} &middot; Lagos, Nigeria &middot; Serving health businesses in Australia
+              <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                {BUSINESS_NAME} &middot; Lagos, Nigeria &middot; Australia Health Focus
               </p>
-              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
+              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.08] dark:text-[#F5F4F0]">
                 Websites and videos for diabetes and health businesses
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
@@ -122,20 +133,47 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Subtle architectural marquee divider */}
+      <div
+        aria-hidden="true"
+        className="overflow-hidden border-t border-ivory-border bg-ivory py-3.5 dark:border-obsidian-border dark:bg-obsidian"
+      >
+        <div className="studio-marquee-track text-xs tracking-[0.18em] text-ink-muted uppercase dark:text-[#96948C]">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="flex shrink-0 items-center">
+              {MARQUEE_ITEMS.map((item) => (
+                <span key={`${dup}-${item}`} className="flex items-center">
+                  <span className="px-6 whitespace-nowrap">{item}</span>
+                  <span className="text-champagne-deep dark:text-champagne-light">
+                    &middot;
+                  </span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* What I make */}
       <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <RevealBlock className="max-w-2xl">
+          <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
               What I make
             </h2>
+            <p className="font-editorial text-lg italic text-ink-muted dark:text-[#C8C6BE]">
+              Three focused services, matched to one brand look
+            </p>
           </RevealBlock>
 
           <StaggerGrid className="mt-10 grid gap-6 md:grid-cols-3">
             {SERVICES.map((service) => (
               <StaggerItem key={service.title}>
-                <div className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/60 sm:p-7 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/55">
+                <div className="group flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/70 sm:p-7 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/60">
                   <div className="space-y-3">
+                    <span className="font-mono-data block text-xs text-champagne-deep dark:text-champagne-light">
+                      {service.index}
+                    </span>
                     <h3 className="font-display text-xl font-semibold text-ink dark:text-[#F5F4F0]">
                       {service.title}
                     </h3>
@@ -147,13 +185,16 @@ export function HomePage() {
                     </p>
                   </div>
 
-                  <div className="mt-8">
+                  <div className="mt-8 border-t border-ivory-border pt-5 dark:border-obsidian-border">
                     <RouteLink
                       to={service.to}
                       className="inline-flex min-h-10 items-center gap-2 text-sm font-medium text-champagne-deep whitespace-nowrap transition-colors duration-150 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne dark:text-champagne-light dark:hover:text-[#F5F4F0]"
                     >
                       <span>{service.button}</span>
-                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
                     </RouteLink>
                   </div>
                 </div>
@@ -163,7 +204,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Featured work (one per service) */}
+      {/* Featured work (asymmetric bento: flagship Website capture + Flyers & Videos tiles) */}
       <section
         id="featured-work"
         className="scroll-mt-20 border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian"
@@ -178,13 +219,13 @@ export function HomePage() {
             </p>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-6 md:grid-cols-3">
-            {/* Tile 1: Websites (uses real Midtown Dental screenshot) */}
-            <StaggerItem>
+          <StaggerGrid className="mt-10 grid gap-6 lg:grid-cols-12">
+            {/* Tile 1: Flagship Website Capture (Bento wide span) */}
+            <StaggerItem className="lg:col-span-7">
               <button
                 type="button"
                 onClick={() => navigate('/websites')}
-                className="group flex h-full w-full flex-col rounded-xl border border-ivory-border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65"
+                className="group flex h-full w-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65"
               >
                 <div className="aspect-[16/10] w-full overflow-hidden rounded-lg border border-ivory-border bg-obsidian dark:border-obsidian-border">
                   <img
@@ -194,10 +235,15 @@ export function HomePage() {
                     className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                  <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
-                    {featuredWebsite.clientName}, Websites
-                  </p>
+                <div className="mt-5 flex items-center justify-between gap-3 px-1">
+                  <div>
+                    <p className="text-base font-semibold text-ink dark:text-[#F5F4F0]">
+                      {featuredWebsite.clientName}, Websites
+                    </p>
+                    <p className="mt-0.5 text-sm text-ink-muted dark:text-[#96948C]">
+                      {featuredWebsite.businessType}
+                    </p>
+                  </div>
                   <ArrowRight
                     className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
                     aria-hidden="true"
@@ -206,53 +252,54 @@ export function HomePage() {
               </button>
             </StaggerItem>
 
-            {/* Tile 2: Flyers & Print */}
-            <StaggerItem>
-              <button
-                type="button"
-                onClick={() => navigate('/flyers-and-print')}
-                className="group flex h-full w-full flex-col rounded-xl border border-ivory-border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65"
-              >
-                <PlaceholderFrame
-                  kind="flyer"
-                  label="Flyer placeholder"
-                  aspectClass="aspect-[16/10]"
-                />
-                <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                  <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
-                    [Client name], Flyers &amp; Print
-                  </p>
-                  <ArrowRight
-                    className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
-                    aria-hidden="true"
+            {/* Stacked right column: Flyers & Print + AI Videos */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+              <StaggerItem>
+                <button
+                  type="button"
+                  onClick={() => navigate('/flyers-and-print')}
+                  className="group flex h-full w-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65"
+                >
+                  <PlaceholderFrame
+                    kind="flyer"
+                    label="Flyer placeholder"
+                    aspectClass="aspect-[16/9]"
                   />
-                </div>
-              </button>
-            </StaggerItem>
+                  <div className="mt-4 flex items-center justify-between gap-2 px-1">
+                    <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
+                      [Client name], Flyers &amp; Print
+                    </p>
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </button>
+              </StaggerItem>
 
-            {/* Tile 3: AI Videos */}
-            <StaggerItem>
-              <button
-                type="button"
-                onClick={() => navigate('/ai-videos')}
-                className="group flex h-full w-full flex-col rounded-xl border border-ivory-border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65"
-              >
-                <PlaceholderFrame
-                  kind="video"
-                  label="Video placeholder"
-                  aspectClass="aspect-[16/10]"
-                />
-                <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                  <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
-                    [Client name], AI Videos
-                  </p>
-                  <ArrowRight
-                    className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
-                    aria-hidden="true"
+              <StaggerItem>
+                <button
+                  type="button"
+                  onClick={() => navigate('/ai-videos')}
+                  className="group flex h-full w-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65"
+                >
+                  <PlaceholderFrame
+                    kind="video"
+                    label="Video placeholder"
+                    aspectClass="aspect-[16/9]"
                   />
-                </div>
-              </button>
-            </StaggerItem>
+                  <div className="mt-4 flex items-center justify-between gap-2 px-1">
+                    <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
+                      [Client name], AI Videos
+                    </p>
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </button>
+              </StaggerItem>
+            </div>
           </StaggerGrid>
         </div>
       </section>
@@ -284,7 +331,7 @@ export function HomePage() {
                 <button
                   type="button"
                   onClick={() => setSelectedProject(project)}
-                  className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-ivory-border bg-ivory text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/65"
+                  className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-ivory-border bg-ivory text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/65"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-ivory-border bg-obsidian-surface dark:border-obsidian-border">
                     <img
@@ -320,10 +367,13 @@ export function HomePage() {
       {/* How it works */}
       <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <RevealBlock>
+          <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
               How it works
             </h2>
+            <p className="font-editorial text-lg italic text-ink-muted dark:text-[#C8C6BE]">
+              From free mockup to launch in four clear steps
+            </p>
           </RevealBlock>
 
           <StaggerGrid className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

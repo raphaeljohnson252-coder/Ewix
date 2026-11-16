@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import { Check, Maximize2 } from 'lucide-react';
 import websitesBackdrop from '../assets/images/bg_websites_obsidian_1794871448351.jpg';
 import { FaqItem, FaqList } from '../components/FaqList';
@@ -175,28 +176,38 @@ export function WebsitesPage() {
               </p>
             </div>
 
-            {/* Category filter tabs */}
+            {/* Category filter tabs with smooth layoutId indicator */}
             <div
               role="tablist"
               aria-label="Filter website samples by industry"
               className="flex flex-wrap items-center gap-1 rounded-lg border border-ivory-border bg-white p-1 dark:border-obsidian-border dark:bg-obsidian-surface"
             >
-              {CATEGORIES.map((category) => (
-                <button
-                  key={category}
-                  type="button"
-                  role="tab"
-                  aria-selected={filter === category}
-                  onClick={() => setFilter(category)}
-                  className={`rounded-md px-3.5 py-2 text-xs font-medium whitespace-nowrap transition-colors duration-150 ${
-                    filter === category
-                      ? 'bg-champagne font-semibold text-obsidian'
-                      : 'text-ink-muted hover:text-ink dark:text-[#96948C] dark:hover:text-[#F5F4F0]'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+              {CATEGORIES.map((category) => {
+                const isSelected = filter === category;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    onClick={() => setFilter(category)}
+                    className={`relative rounded-md px-3.5 py-2 text-xs font-medium whitespace-nowrap transition-colors duration-150 ${
+                      isSelected
+                        ? 'font-semibold text-obsidian'
+                        : 'text-ink-muted hover:text-ink dark:text-[#96948C] dark:hover:text-[#F5F4F0]'
+                    }`}
+                  >
+                    {isSelected && (
+                      <motion.span
+                        layoutId="activeWebsiteCategory"
+                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute inset-0 rounded-md bg-champagne"
+                      />
+                    )}
+                    <span className="relative z-10">{category}</span>
+                  </button>
+                );
+              })}
             </div>
           </RevealBlock>
 

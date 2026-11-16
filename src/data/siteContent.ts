@@ -17,6 +17,12 @@ export const EMAIL_HREF =
 export const WHATSAPP_NUMBER_DISPLAY = '+234 814 084 1284';
 export const WHATSAPP_BASE = 'https://wa.me/2348140841284';
 
+function withBase(relativePath: string): string {
+  const base = import.meta.env.BASE_URL || '/';
+  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+  return `${normalizedBase}${relativePath.replace(/^\/+/, '')}`;
+}
+
 export function buildWhatsAppUrl(service?: ServiceSlug): string {
   const textByService: Record<ServiceSlug, string> = {
     websites:
@@ -73,8 +79,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Cosmetic & family dental studio',
     country: 'USA',
     category: 'Health & Wellness',
-    imageSrc:
-      '/assets/aistudio/screencapture-midtowndental-lovable-app-2026-07-27-13_31_36_764be258.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-midtowndental-lovable-app-2026-07-27-13_31_36_764be258.png'
+    ),
     imageAlt:
       'Full-page website capture for Midtown Dental showing modern appointment booking, treatment cards, dentist profile, and before-and-after smile gallery',
     summary:
@@ -96,8 +103,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Holistic wellness, herbal tea & publishing',
     country: 'USA',
     category: 'Health & Wellness',
-    imageSrc:
-      '/assets/aistudio/screencapture-delightfull-world-2026-07-13-13_33_51_fcafeb08.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-delightfull-world-2026-07-13-13_33_51_fcafeb08.png'
+    ),
     imageAlt:
       'Full-page website capture for DelightFull Company featuring herbal tea blends, wellness branches, founder story, and mailing list',
     summary:
@@ -119,8 +127,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Dental practice & patient education hub',
     country: 'USA',
     category: 'Health & Wellness',
-    imageSrc:
-      '/assets/aistudio/screencapture-midtowndentalmiami-2026-07-27-13_11_23_bc8f8ebb.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-midtowndentalmiami-2026-07-27-13_11_23_bc8f8ebb.png'
+    ),
     imageAlt:
       'Full-page website capture for Midtown Dental Miami showing clinic hours, patient education links, dentist profile, testimonials, and embedded location map',
     summary:
@@ -142,8 +151,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Author book & guided healing journal',
     country: 'International',
     category: 'Books & Editorial',
-    imageSrc:
-      '/assets/aistudio/Journal-Joi-Jno-Baptiste-09-02-2026_05_51_AM_484d154a.png',
+    imageSrc: withBase(
+      'assets/aistudio/Journal-Joi-Jno-Baptiste-09-02-2026_05_51_AM_484d154a.png'
+    ),
     imageAlt:
       "Full-page website capture for Joi' Jno-Baptiste's book and guided journal launch featuring preorder buttons and author bio",
     summary:
@@ -165,8 +175,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Digital library, books & video lectures',
     country: 'International',
     category: 'Books & Editorial',
-    imageSrc:
-      '/assets/aistudio/screencapture-readdy-cc-preview-12ead0de-5690-4ff4-9d2c-8a7b28cd4a0e-11041618-2026-06-16-13_47_33_d688a00a.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-readdy-cc-preview-12ead0de-5690-4ff4-9d2c-8a7b28cd4a0e-11041618-2026-06-16-13_47_33_d688a00a.png'
+    ),
     imageAlt:
       'Full-page website capture for The Mighty Free Mind showcasing a multi-book library, essays, video lectures, and contact form',
     summary:
@@ -188,8 +199,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Creative studios & event space booking',
     country: 'USA',
     category: 'Studios & Hospitality',
-    imageSrc:
-      '/assets/aistudio/screencapture-readdy-cc-preview-5306ca03-0bfe-4541-afee-764b392d68f9-11455008-2026-06-28-07_53_15_76487a9e.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-readdy-cc-preview-5306ca03-0bfe-4541-afee-764b392d68f9-11455008-2026-06-28-07_53_15_76487a9e.png'
+    ),
     imageAlt:
       'Full-page black-theme website capture for MusiciansWorld.us showcasing photography studio, rehearsal rooms, event venue, and booking actions',
     summary:
@@ -211,8 +223,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Architectural doors & lighting catalogue',
     country: 'International',
     category: 'Studios & Hospitality',
-    imageSrc:
-      '/assets/aistudio/screencapture-pixel-perfect-render-44762-lovable-app-2026-10-03-12_11_18_ac571868.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-pixel-perfect-render-44762-lovable-app-2026-10-03-12_11_18_ac571868.png'
+    ),
     imageAlt:
       'Full-page website capture for Threshold featuring architectural doors, lighting collection grids, and editorial photography',
     summary:
@@ -234,8 +247,9 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     businessType: 'Local coffee shop, rewards & catering',
     country: 'USA',
     category: 'Studios & Hospitality',
-    imageSrc:
-      '/assets/aistudio/screencapture-readdy-cc-preview-7863ddb5-4b8d-4b47-91af-0c74439b2490-11774434-2026-07-07-11_05_49_64def063.png',
+    imageSrc: withBase(
+      'assets/aistudio/screencapture-readdy-cc-preview-7863ddb5-4b8d-4b47-91af-0c74439b2490-11774434-2026-07-07-11_05_49_64def063.png'
+    ),
     imageAlt:
       'Full-page website capture for The Mill Coffee House showing online ordering, featured drinks menu, rewards, catering, and reviews',
     summary:

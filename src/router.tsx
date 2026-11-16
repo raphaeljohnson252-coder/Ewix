@@ -15,12 +15,35 @@ const VALID_ROUTES: RoutePath[] = [
   '/contact',
 ];
 
+function getBasePrefix(): string {
+  const base = import.meta.env.BASE_URL || '/';
+  return base === '/' ? '' : base.replace(/\/+$/, '');
+}
+
 function normalizePath(pathname: string): RoutePath {
-  const trimmed = pathname.replace(/\/+$/, '') || '/';
+  const basePrefix = getBasePrefix();
+  let relative = pathname;
+  if (basePrefix && pathname.startsWith(basePrefix)) {
+    relative = pathname.slice(basePrefix.length) || '/';
+  }
+  const trimmed = relative.replace(/\/+$/, '') || '/';
   if (VALID_ROUTES.includes(trimmed as RoutePath)) {
     return trimmed as RoutePath;
   }
   return '/';
+}
+
+function buildFullHref(
+  to: RoutePath,
+  options?: { hash?: string; service?: string }
+): string {
+  const basePrefix = getBasePrefix();
+  const routeSegment = to === '/' ? '/' : to;
+  const search = options?.service
+    ? `?service=${encodeURIComponent(options.service)}`
+    : '';
+  const hash = options?.hash ? `#${options.hash}` : '';
+  return `${basePrefix}${routeSegment}${search}${hash}`;
 }
 
 interface RouterContextValue {
@@ -60,13 +83,12 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
 
   const navigate = useCallback(
     (to: RoutePath, options?: { hash?: string; service?: string }) => {
-      const search = options?.service
-        ? `?service=${encodeURIComponent(options.service)}`
-        : '';
-      const hash = options?.hash ? `#${options.hash}` : '';
-      const nextUrl = `${to}${search}${hash}`;
+      const nextUrl = buildFullHref(to, options);
+      const currentFull = `${window.location.pathname}${window.location.search}`;
+      const basePrefix = getBasePrefix();
+      const targetPathnameAndSearch = `${basePrefix}${to}${options?.service ? `?service=${encodeURIComponent(options.service)}` : ''}`;
 
-      if (window.location.pathname + window.location.search !== `${to}${search}`) {
+      if (currentFull !== targetPathnameAndSearch) {
         window.history.pushState({}, '', nextUrl);
       }
 
@@ -115,7 +137,7 @@ export function RouteLink({
   ...rest
 }: NavLinkProps) {
   const { navigate } = useRouter();
-  const href = `${to}${service ? `?service=${encodeURIComponent(service)}` : ''}${hash ? `#${hash}` : ''}`;
+  const href = buildFullHref(to, { hash, service });
 
   return (
     <a
