@@ -3,6 +3,7 @@ import videosBackdrop from '../assets/images/bg_videos_obsidian_1794871450112.jp
 import { FaqItem, FaqList } from '../components/FaqList';
 import {
   HeroEntrance,
+  ParallaxText,
   RevealBlock,
   StaggerGrid,
   StaggerItem,
@@ -52,28 +53,34 @@ export function AiVideosPage() {
         <PageHeroBackdrop imageSrc={videosBackdrop} />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
-            <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
-              Short videos that explain what you do in plain language
-            </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-              15 to 60 second explainers and social clips for diabetes and health businesses.
-            </p>
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <RouteLink
-                to="/contact"
-                service="AI Videos"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-              >
-                Get a free sample video
-              </RouteLink>
-              <button
-                type="button"
-                onClick={scrollToSamples}
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
-              >
-                Watch samples
-              </button>
-            </div>
+            <ParallaxText>
+              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
+                Short videos that explain what you do in plain language
+              </h1>
+            </ParallaxText>
+            <ParallaxText>
+              <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
+                15 to 60 second explainers and social clips for diabetes and health businesses.
+              </p>
+            </ParallaxText>
+            <ParallaxText>
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <RouteLink
+                  to="/contact"
+                  service="AI Videos"
+                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                >
+                  Get a free sample video
+                </RouteLink>
+                <button
+                  type="button"
+                  onClick={scrollToSamples}
+                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                >
+                  Watch samples
+                </button>
+              </div>
+            </ParallaxText>
           </HeroEntrance>
         </div>
       </section>

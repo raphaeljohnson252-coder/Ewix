@@ -3,6 +3,7 @@ import flyersBackdrop from '../assets/images/bg_flyers_obsidian_1794871450441.jp
 import { FaqItem, FaqList } from '../components/FaqList';
 import {
   HeroEntrance,
+  ParallaxText,
   RevealBlock,
   StaggerGrid,
   StaggerItem,
@@ -53,28 +54,34 @@ export function FlyersPage() {
         <PageHeroBackdrop imageSrc={flyersBackdrop} />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
-            <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
-              Flyers and print that match your brand
-            </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-              Flyers, posters and handouts that look like your website, so patients recognise you everywhere.
-            </p>
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <RouteLink
-                to="/contact"
-                service="Flyers & Print"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-              >
-                Get a free mockup
-              </RouteLink>
-              <button
-                type="button"
-                onClick={scrollToSamples}
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
-              >
-                See samples
-              </button>
-            </div>
+            <ParallaxText>
+              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
+                Flyers and print that match your brand
+              </h1>
+            </ParallaxText>
+            <ParallaxText>
+              <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
+                Flyers, posters and handouts that look like your website, so patients recognise you everywhere.
+              </p>
+            </ParallaxText>
+            <ParallaxText>
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <RouteLink
+                  to="/contact"
+                  service="Flyers & Print"
+                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                >
+                  Get a free mockup
+                </RouteLink>
+                <button
+                  type="button"
+                  onClick={scrollToSamples}
+                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                >
+                  See samples
+                </button>
+              </div>
+            </ParallaxText>
           </HeroEntrance>
         </div>
       </section>

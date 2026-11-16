@@ -4,8 +4,14 @@
  */
 
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, MotionConfig } from 'motion/react';
+import {
+  AnimatePresence,
+  motion,
+  MotionConfig,
+  useReducedMotion,
+} from 'motion/react';
 import { Header } from './components/Header';
+import { APP_PAGE_VARIANTS, LUXURY_EASE } from './components/LuxuryMotion';
 import { SharedCtaAndFooter } from './components/SharedCtaAndFooter';
 import { RoutePath } from './data/siteContent';
 import { AiVideosPage } from './pages/AiVideosPage';
@@ -25,6 +31,7 @@ const PAGE_TITLES: Record<RoutePath, string> = {
 
 function AppShell() {
   const { path } = useRouter();
+  const shouldReduceMotion = useReducedMotion();
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof document === 'undefined') return true;
     return document.documentElement.classList.contains('dark');
@@ -59,14 +66,35 @@ function AppShell() {
   return (
     <div className="flex min-h-screen flex-col bg-ivory text-ink dark:bg-obsidian dark:text-[#F5F4F0]">
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
-      <main className="flex-1">
+
+      {/* Subtle gold hairline route-reveal shimmer */}
+      {!shouldReduceMotion && (
+        <motion.div
+          key={`shimmer-${path}`}
+          aria-hidden="true"
+          initial={{ scaleX: 0, opacity: 0.9 }}
+          animate={{ scaleX: 1, opacity: 0 }}
+          transition={{ duration: 0.75, ease: LUXURY_EASE }}
+          className="pointer-events-none fixed inset-x-0 top-16 z-30 h-px origin-left bg-gradient-to-r from-transparent via-champagne to-transparent"
+        />
+      )}
+
+      <main className="relative flex-1">
         <AnimatePresence mode="wait">
           <motion.div
             key={path}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            variants={
+              shouldReduceMotion
+                ? {
+                    initial: { opacity: 0 },
+                    animate: { opacity: 1, transition: { duration: 0.15 } },
+                    exit: { opacity: 0, transition: { duration: 0.1 } },
+                  }
+                : APP_PAGE_VARIANTS
+            }
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
             {path === '/' && <HomePage />}
             {path === '/websites' && <WebsitesPage />}

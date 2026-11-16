@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import contactBackdrop from '../assets/images/bg_contact_obsidian_1794871451107.jpg';
-import { HeroEntrance } from '../components/LuxuryMotion';
+import { HeroEntrance, ParallaxText } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import {
   buildWhatsAppUrl,
@@ -91,40 +91,50 @@ export function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Left column: Headline, text, direct buttons */}
             <HeroEntrance className="space-y-6 lg:col-span-5">
-              <p className="text-sm font-medium tracking-wide text-champagne-deep dark:text-champagne-light">
-                {BUSINESS_NAME} &middot; {DESIGNER_NAME}
-              </p>
-              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
-                Let&apos;s look at your website
-              </h1>
-              <p className="text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                Send me your website link and I&apos;ll reply with one specific improvement and a free homepage mockup. No obligation.
-              </p>
+              <ParallaxText>
+                <p className="text-sm font-medium tracking-wide text-champagne-deep dark:text-champagne-light">
+                  {BUSINESS_NAME} &middot; {DESIGNER_NAME}
+                </p>
+              </ParallaxText>
+              <ParallaxText>
+                <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
+                  Let&apos;s look at your website
+                </h1>
+              </ParallaxText>
+              <ParallaxText>
+                <p className="text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
+                  Send me your website link and I&apos;ll reply with one specific improvement and a free homepage mockup. No obligation.
+                </p>
+              </ParallaxText>
 
-              <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <a
-                  href={buildWhatsAppUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                >
-                  Message on WhatsApp
-                </a>
-                <a
-                  href={EMAIL_HREF}
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
-                >
-                  Email me ({CONTACT_EMAIL})
-                </a>
-              </div>
+              <ParallaxText>
+                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <a
+                    href={buildWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                  >
+                    Message on WhatsApp
+                  </a>
+                  <a
+                    href={EMAIL_HREF}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  >
+                    Email me ({CONTACT_EMAIL})
+                  </a>
+                </div>
+              </ParallaxText>
 
-              <p className="pt-4 text-sm leading-relaxed text-ink-muted dark:text-[#96948C]">
-                Based in {LOCATION_TEXT}, working with clients in Australia. I usually reply within 24 hours.
-              </p>
+              <ParallaxText>
+                <p className="pt-4 text-sm leading-relaxed text-ink-muted dark:text-[#96948C]">
+                  Based in {LOCATION_TEXT}, working with clients in Australia. I usually reply within 24 hours.
+                </p>
+              </ParallaxText>
             </HeroEntrance>
 
             {/* Right column: Simple form */}
-            <HeroEntrance delay={0.12} className="lg:col-span-7">
+            <HeroEntrance delay={0.14} parallaxOffset={-14} className="lg:col-span-7">
               <div className="rounded-xl border border-ivory-border bg-white/95 p-6 backdrop-blur-md sm:p-8 dark:border-obsidian-border dark:bg-obsidian-surface/90">
                 {submitted ? (
                   <div className="space-y-5 py-4">

@@ -1,19 +1,49 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'motion/react';
+import { LUXURY_EASE } from './LuxuryMotion';
 
 interface PageHeroBackdropProps {
   imageSrc: string;
 }
 
 export function PageHeroBackdrop({ imageSrc }: PageHeroBackdropProps) {
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: backdropRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 28,
+    restDelta: 0.001,
+  });
+
+  const parallaxY = useTransform(
+    smoothProgress,
+    [0, 1],
+    ['0%', shouldReduceMotion ? '0%' : '12%']
+  );
+
   return (
     <div
+      ref={backdropRef}
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 overflow-hidden bg-ivory dark:bg-obsidian"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 1.04 }}
+        style={{ y: parallaxY }}
+        initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.95, ease: LUXURY_EASE }}
         className="h-full w-full"
       >
         <img

@@ -4,6 +4,7 @@ import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
 import { GlucoseTraceHeroVisual } from '../components/GlucoseTraceHeroVisual';
 import {
   HeroEntrance,
+  ParallaxText,
   RevealBlock,
   StaggerGrid,
   StaggerItem,
@@ -100,33 +101,41 @@ export function HomePage() {
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
             <HeroEntrance className="space-y-6 lg:col-span-6">
-              <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
-                {BUSINESS_NAME} &middot; Lagos, Nigeria &middot; Australia Health Focus
-              </p>
-              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.08] dark:text-[#F5F4F0]">
-                Websites and videos for diabetes and health businesses
-              </h1>
-              <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                I design clear, mobile-friendly websites, flyers and short AI videos that help patients and customers find you, understand what you offer and get in touch.
-              </p>
-              <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <RouteLink
-                  to="/contact"
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                >
-                  Get a free mockup
-                </RouteLink>
-                <button
-                  type="button"
-                  onClick={scrollToFeatured}
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
-                >
-                  See my work
-                </button>
-              </div>
+              <ParallaxText>
+                <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                  {BUSINESS_NAME} &middot; Lagos, Nigeria &middot; Australia Health Focus
+                </p>
+              </ParallaxText>
+              <ParallaxText>
+                <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.08] dark:text-[#F5F4F0]">
+                  Websites and videos for diabetes and health businesses
+                </h1>
+              </ParallaxText>
+              <ParallaxText>
+                <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
+                  I design clear, mobile-friendly websites, flyers and short AI videos that help patients and customers find you, understand what you offer and get in touch.
+                </p>
+              </ParallaxText>
+              <ParallaxText>
+                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <RouteLink
+                    to="/contact"
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                  >
+                    Get a free mockup
+                  </RouteLink>
+                  <button
+                    type="button"
+                    onClick={scrollToFeatured}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  >
+                    See my work
+                  </button>
+                </div>
+              </ParallaxText>
             </HeroEntrance>
 
-            <HeroEntrance delay={0.12} className="lg:col-span-6">
+            <HeroEntrance delay={0.14} parallaxOffset={-16} className="lg:col-span-6">
               <GlucoseTraceHeroVisual />
             </HeroEntrance>
           </div>
