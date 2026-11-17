@@ -1,4 +1,6 @@
 import { Check, Mail } from 'lucide-react';
+import flyerTrifoldBackdrop from '../assets/images/bg_flyer_trifold_obsidian_1794878154751.jpg';
+import flyerSpreadBackdrop from '../assets/images/bg_flyer_editorial_spread_1794878154314.jpg';
 import flyersBackdrop from '../assets/images/bg_flyers_obsidian_1794871450441.jpg';
 import { FaqItem, FaqList } from '../components/FaqList';
 import {
@@ -57,7 +59,14 @@ export function FlyersPage() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <PageHeroBackdrop imageSrc={flyersBackdrop} />
+        <PageHeroBackdrop
+          images={[
+            flyerTrifoldBackdrop,
+            flyerSpreadBackdrop,
+            flyersBackdrop,
+          ]}
+          intervalMs={5500}
+        />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
             <SplitHeadline

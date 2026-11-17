@@ -55,11 +55,17 @@ export function AiVideosPage() {
     }
   };
 
+  const heroVideos = VIDEO_SAMPLES.slice(0, 4).map((sample) => sample.videoSrc);
+
   return (
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <PageHeroBackdrop imageSrc={videosBackdrop} />
+        <PageHeroBackdrop
+          imageSrc={videosBackdrop}
+          videos={heroVideos}
+          intervalMs={7500}
+        />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
             <SplitHeadline

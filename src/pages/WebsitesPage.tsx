@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Check, Mail, Maximize2 } from 'lucide-react';
+import diabetesBackdrop from '../assets/images/bg_industry_diabetes_clinic_1794878155242.jpg';
+import dentalBackdrop from '../assets/images/bg_industry_dental_wellness_1794878154339.jpg';
 import websitesBackdrop from '../assets/images/bg_websites_obsidian_1794871448351.jpg';
+import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
 import { FaqItem, FaqList } from '../components/FaqList';
 import {
   HeroEntrance,
@@ -83,7 +86,15 @@ export function WebsitesPage() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <PageHeroBackdrop imageSrc={websitesBackdrop} />
+        <PageHeroBackdrop
+          images={[
+            diabetesBackdrop,
+            dentalBackdrop,
+            websitesBackdrop,
+            homeBackdrop,
+          ]}
+          intervalMs={5500}
+        />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
             <SplitHeadline

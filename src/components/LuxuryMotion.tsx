@@ -14,29 +14,26 @@ export const LUXURY_EASE = [0.22, 1, 0.36, 1] as const;
 export const APP_PAGE_VARIANTS = {
   initial: {
     opacity: 0,
-    y: 26,
-    scale: 0.99,
-    filter: 'blur(4px)',
+    y: 24,
+    scale: 0.992,
   },
   animate: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: 'blur(0px)',
     transition: {
-      duration: 0.56,
+      duration: 0.52,
       ease: LUXURY_EASE,
       when: 'beforeChildren' as const,
-      staggerChildren: 0.07,
+      staggerChildren: 0.06,
     },
   },
   exit: {
     opacity: 0,
-    y: -16,
-    scale: 0.994,
-    filter: 'blur(3px)',
+    y: -14,
+    scale: 0.995,
     transition: {
-      duration: 0.26,
+      duration: 0.24,
       ease: [0.4, 0, 1, 1] as const,
     },
   },

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Check, CheckCircle2, Copy, Mail } from 'lucide-react';
 import contactBackdrop from '../assets/images/bg_contact_obsidian_1794871451107.jpg';
+import diabetesBackdrop from '../assets/images/bg_industry_diabetes_clinic_1794878155242.jpg';
+import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
 import {
   HeroEntrance,
   MagneticWrap,
@@ -101,7 +103,10 @@ export function ContactPage() {
   return (
     <div>
       <section className="relative overflow-hidden">
-        <PageHeroBackdrop imageSrc={contactBackdrop} />
+        <PageHeroBackdrop
+          images={[contactBackdrop, diabetesBackdrop, homeBackdrop]}
+          intervalMs={6000}
+        />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Left column: Headline, text, direct email button */}

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { Mail, X } from 'lucide-react';
 import { buildEmailUrl, VideoSample } from '../data/siteContent';
@@ -28,7 +29,9 @@ export function VideoLightbox({ video, onClose }: VideoLightboxProps) {
 
   const emailUrl = buildEmailUrl('videos');
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {video && (
         <motion.div
@@ -103,6 +106,7 @@ export function VideoLightbox({ video, onClose }: VideoLightboxProps) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

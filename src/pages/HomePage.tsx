@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { ArrowRight, Maximize2 } from 'lucide-react';
 import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
+import diabetesBackdrop from '../assets/images/bg_industry_diabetes_clinic_1794878155242.jpg';
+import dentalBackdrop from '../assets/images/bg_industry_dental_wellness_1794878154339.jpg';
+import flyerTrifoldBackdrop from '../assets/images/bg_flyer_trifold_obsidian_1794878154751.jpg';
+import contactBackdrop from '../assets/images/bg_contact_obsidian_1794871451107.jpg';
 import { GlucoseTraceHeroVisual } from '../components/GlucoseTraceHeroVisual';
 import {
   HeroEntrance,
@@ -95,6 +99,14 @@ export function HomePage() {
   const featuredWebsite = WEBSITE_PROJECTS[0]; // Midtown Dental
   const featuredVideo = VIDEO_SAMPLES[0]; // Diabetes Care Clinic Explainer
 
+  const heroImages = [
+    homeBackdrop,
+    diabetesBackdrop,
+    flyerTrifoldBackdrop,
+    dentalBackdrop,
+    contactBackdrop,
+  ];
+
   const scrollToFeatured = () => {
     const el = document.getElementById('featured-work');
     if (el) {
@@ -106,7 +118,7 @@ export function HomePage() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <PageHeroBackdrop imageSrc={homeBackdrop} />
+        <PageHeroBackdrop images={heroImages} intervalMs={5500} />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
             <HeroEntrance className="space-y-6 lg:col-span-6">
@@ -327,17 +339,21 @@ export function HomePage() {
                       <div className="flex shrink-0 items-center gap-2">
                         <button
                           type="button"
-                          onClick={() => setSelectedVideo(featuredVideo)}
-                          aria-label={`Expand ${featuredVideo.title}`}
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-ivory-border bg-ivory text-ink-muted transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedVideo(featuredVideo);
+                          }}
+                          aria-label={`Expand ${featuredVideo.title} in full-screen player`}
+                          className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-md border border-ivory-border bg-ivory px-2.5 text-xs font-medium text-champagne-deep transition-colors duration-150 hover:border-champagne hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-champagne-light dark:hover:border-champagne-light dark:hover:text-[#F5F4F0]"
                         >
                           <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                          <span>Expand</span>
                         </button>
                         <button
                           type="button"
                           onClick={() => navigate('/ai-videos')}
                           aria-label="Go to AI Videos page"
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-ivory-border bg-ivory text-ink-muted transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                          className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-ivory-border bg-ivory text-ink-muted transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                         >
                           <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>

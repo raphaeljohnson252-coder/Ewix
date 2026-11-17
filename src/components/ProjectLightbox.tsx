@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { Mail, X } from 'lucide-react';
 import { buildEmailUrl, WebsiteProject } from '../data/siteContent';
@@ -28,7 +29,9 @@ export function ProjectLightbox({ project, onClose }: ProjectLightboxProps) {
 
   const emailUrl = buildEmailUrl('websites');
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {project && (
         <motion.div
@@ -145,6 +148,7 @@ export function ProjectLightbox({ project, onClose }: ProjectLightboxProps) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
