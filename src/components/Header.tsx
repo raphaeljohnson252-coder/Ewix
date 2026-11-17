@@ -3,11 +3,12 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
 import { RouteLink, useRouter } from '../router';
 import {
-  buildWhatsAppUrl,
+  buildEmailUrl,
   BUSINESS_NAME,
   RoutePath,
   ServiceSlug,
 } from '../data/siteContent';
+import { MagneticWrap } from './LuxuryMotion';
 
 interface HeaderProps {
   isDark: boolean;
@@ -32,7 +33,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
     path === '/flyers-and-print' ||
     path === '/ai-videos';
 
-  const whatsappUrl = buildWhatsAppUrl(getServiceFromPath(path));
+  const emailUrl = buildEmailUrl(getServiceFromPath(path));
 
   useEffect(() => {
     setServicesOpen(false);
@@ -180,7 +181,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
           </RouteLink>
         </nav>
 
-        {/* Zone 3: Theme toggle & Sticky primary CTA */}
+        {/* Zone 3: Theme toggle & Sticky primary CTA (Email) */}
         <div className="flex items-center gap-2.5 shrink-0">
           <button
             type="button"
@@ -196,14 +197,14 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
             )}
           </button>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-10 items-center justify-center rounded-lg bg-champagne px-4 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-          >
-            Message me
-          </a>
+          <MagneticWrap>
+            <a
+              href={emailUrl}
+              className="luxury-shimmer-btn inline-flex h-10 items-center justify-center rounded-lg bg-champagne px-4 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+            >
+              Message me
+            </a>
+          </MagneticWrap>
 
           <button
             type="button"

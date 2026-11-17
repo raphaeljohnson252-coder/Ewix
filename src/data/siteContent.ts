@@ -14,8 +14,11 @@ export const CONTACT_EMAIL = 'ewixstudio25@gmail.com';
 export const EMAIL_HREF =
   'mailto:ewixstudio25@gmail.com?subject=Portfolio%20enquiry%20for%20Ewixstudio';
 
-export const WHATSAPP_NUMBER_DISPLAY = '+234 814 084 1284';
-export const WHATSAPP_BASE = 'https://wa.me/2348140841284';
+export const SERVICE_PRICES: Record<ServiceSlug, string> = {
+  websites: '$150',
+  flyers: '$45',
+  videos: '$75',
+};
 
 function withBase(relativePath: string): string {
   const base = import.meta.env.BASE_URL || '/';
@@ -23,8 +26,14 @@ function withBase(relativePath: string): string {
   return `${normalizedBase}${relativePath.replace(/^\/+/, '')}`;
 }
 
-export function buildWhatsAppUrl(service?: ServiceSlug): string {
-  const textByService: Record<ServiceSlug, string> = {
+export function buildEmailUrl(service?: ServiceSlug): string {
+  const subjectByService: Record<ServiceSlug, string> = {
+    websites: 'Website quote enquiry — Ewixstudio',
+    flyers: 'Flyers & Print quote enquiry — Ewixstudio',
+    videos: 'AI Video quote enquiry — Ewixstudio',
+  };
+
+  const bodyByService: Record<ServiceSlug, string> = {
     websites:
       "Hi Raphael, I saw your portfolio and I'd like a quote for a website for my business.",
     flyers:
@@ -33,12 +42,14 @@ export function buildWhatsAppUrl(service?: ServiceSlug): string {
       "Hi Raphael, I saw your portfolio and I'd like a quote for an AI video for my business.",
   };
 
-  const message = service
-    ? textByService[service]
+  const subject = service
+    ? subjectByService[service]
+    : 'Project quote enquiry — Ewixstudio';
+  const body = service
+    ? bodyByService[service]
     : "Hi Raphael, I saw your portfolio and I'd like a quote for my business.";
 
-  const encoded = encodeURIComponent(message).replace(/'/g, '%27');
-  return `${WHATSAPP_BASE}?text=${encoded}`;
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export interface TestimonialData {
@@ -80,7 +91,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'USA',
     category: 'Health & Wellness',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-midtowndental-lovable-app-2026-07-27-13_31_36_764be258.png'
+      'assets/aistudio/screencapture-midtowndental-lovable-app-2026-07-27-13_31_36_764be258.webp'
     ),
     imageAlt:
       'Full-page website capture for Midtown Dental showing modern appointment booking, treatment cards, dentist profile, and before-and-after smile gallery',
@@ -104,7 +115,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'USA',
     category: 'Health & Wellness',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-delightfull-world-2026-07-13-13_33_51_fcafeb08.png'
+      'assets/aistudio/screencapture-delightfull-world-2026-07-13-13_33_51_fcafeb08.webp'
     ),
     imageAlt:
       'Full-page website capture for DelightFull Company featuring herbal tea blends, wellness branches, founder story, and mailing list',
@@ -128,7 +139,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'USA',
     category: 'Health & Wellness',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-midtowndentalmiami-2026-07-27-13_11_23_bc8f8ebb.png'
+      'assets/aistudio/screencapture-midtowndentalmiami-2026-07-27-13_11_23_bc8f8ebb.webp'
     ),
     imageAlt:
       'Full-page website capture for Midtown Dental Miami showing clinic hours, patient education links, dentist profile, testimonials, and embedded location map',
@@ -152,7 +163,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'International',
     category: 'Books & Editorial',
     imageSrc: withBase(
-      'assets/aistudio/Journal-Joi-Jno-Baptiste-09-02-2026_05_51_AM_484d154a.png'
+      'assets/aistudio/Journal-Joi-Jno-Baptiste-09-02-2026_05_51_AM_484d154a.webp'
     ),
     imageAlt:
       "Full-page website capture for Joi' Jno-Baptiste's book and guided journal launch featuring preorder buttons and author bio",
@@ -176,7 +187,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'International',
     category: 'Books & Editorial',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-readdy-cc-preview-12ead0de-5690-4ff4-9d2c-8a7b28cd4a0e-11041618-2026-06-16-13_47_33_d688a00a.png'
+      'assets/aistudio/screencapture-readdy-cc-preview-12ead0de-5690-4ff4-9d2c-8a7b28cd4a0e-11041618-2026-06-16-13_47_33_d688a00a.webp'
     ),
     imageAlt:
       'Full-page website capture for The Mighty Free Mind showcasing a multi-book library, essays, video lectures, and contact form',
@@ -200,7 +211,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'USA',
     category: 'Studios & Hospitality',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-readdy-cc-preview-5306ca03-0bfe-4541-afee-764b392d68f9-11455008-2026-06-28-07_53_15_76487a9e.png'
+      'assets/aistudio/screencapture-readdy-cc-preview-5306ca03-0bfe-4541-afee-764b392d68f9-11455008-2026-06-28-07_53_15_76487a9e.webp'
     ),
     imageAlt:
       'Full-page black-theme website capture for MusiciansWorld.us showcasing photography studio, rehearsal rooms, event venue, and booking actions',
@@ -224,7 +235,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'International',
     category: 'Studios & Hospitality',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-pixel-perfect-render-44762-lovable-app-2026-10-03-12_11_18_ac571868.png'
+      'assets/aistudio/screencapture-pixel-perfect-render-44762-lovable-app-2026-10-03-12_11_18_ac571868.webp'
     ),
     imageAlt:
       'Full-page website capture for Threshold featuring architectural doors, lighting collection grids, and editorial photography',
@@ -248,7 +259,7 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
     country: 'USA',
     category: 'Studios & Hospitality',
     imageSrc: withBase(
-      'assets/aistudio/screencapture-readdy-cc-preview-7863ddb5-4b8d-4b47-91af-0c74439b2490-11774434-2026-07-07-11_05_49_64def063.png'
+      'assets/aistudio/screencapture-readdy-cc-preview-7863ddb5-4b8d-4b47-91af-0c74439b2490-11774434-2026-07-07-11_05_49_64def063.webp'
     ),
     imageAlt:
       'Full-page website capture for The Mill Coffee House showing online ordering, featured drinks menu, rewards, catering, and reviews',
@@ -302,37 +313,86 @@ export const FLYER_SAMPLES: FlyerSample[] = [
 
 export interface VideoSample {
   id: string;
-  label: string;
-  projectName: string;
+  title: string;
+  category: string;
   length: string;
   whereUsed: string;
   whatItExplains: string;
+  videoSrc: string;
   result?: string;
 }
 
 export const VIDEO_SAMPLES: VideoSample[] = [
   {
-    id: 'video-sample-1',
-    label: 'Placeholder sample 1',
-    projectName: '[Project name]',
-    length: '[length]',
-    whereUsed: '[where it is used]',
-    whatItExplains: '[one sentence]',
+    id: 'verdea-hydration-cream',
+    title: 'Verdéa Botanical Hydration Cream',
+    category: 'Wellness & Skincare',
+    length: '20s',
+    whereUsed: 'Website hero, Instagram & wellness product campaigns',
+    whatItExplains:
+      'Calm botanical product showcase highlighting natural ingredients, whipped cream texture, and clean hydration messaging.',
+    videoSrc: withBase(
+      'assets/aistudio/Untitled_Scene_11-03_00_06_27_20261102190837_77d2e7f4.mp4'
+    ),
   },
   {
-    id: 'video-sample-2',
-    label: 'Placeholder sample 2',
-    projectName: '[Project name]',
-    length: '[length]',
-    whereUsed: '[where it is used]',
-    whatItExplains: '[one sentence]',
+    id: 'hartman-cole-law',
+    title: 'Hartman & Cole Law',
+    category: 'Professional Practice',
+    length: '20s',
+    whereUsed: 'Practice landing page & consultation lead ads',
+    whatItExplains:
+      'Trust-focused brand commercial moving from client stress to calm reassurance, closing with an animated gold consultation call to action.',
+    videoSrc: withBase(
+      'assets/aistudio/create_ai_video_ads_for_4b02e8f6_3c3dd24f.mp4'
+    ),
   },
   {
-    id: 'video-sample-3',
-    label: 'Placeholder sample 3',
-    projectName: '[Project name]',
-    length: '[length]',
-    whereUsed: '[where it is used]',
-    whatItExplains: '[one sentence]',
+    id: 'maple-ridge-residences',
+    title: 'Maple Ridge Residences',
+    category: 'Property & Walkthrough',
+    length: '30s',
+    whereUsed: 'Social reels, website showcase & private viewing invites',
+    whatItExplains:
+      'Guided architectural tour covering open living spaces, designer kitchen finishes, and private outdoor living with a clear booking prompt.',
+    videoSrc: withBase(
+      'assets/aistudio/I_will_create_AI_promo_5edb18ce_4b2344b1.mp4'
+    ),
+  },
+  {
+    id: 'savore-gourmet-burger',
+    title: 'Savoré Signature Gourmet',
+    category: 'Food & Hospitality',
+    length: '20s',
+    whereUsed: 'Instagram Reels, TikTok & digital menu screens',
+    whatItExplains:
+      'Close-up culinary promo spotlighting fresh ingredients, craft preparation, and high-impact text captions built for muted autoplay feeds.',
+    videoSrc: withBase(
+      'assets/aistudio/Untitled_Scene_11-03_14_56_23_20261103095734_1c5e07c0.mp4'
+    ),
+  },
+  {
+    id: 'velocity-x1-footwear',
+    title: 'Velocity X1 Performance',
+    category: 'Athletic & Movement',
+    length: '20s',
+    whereUsed: 'Social video ads, product pages & launch campaigns',
+    whatItExplains:
+      'Dynamic product spotlight demonstrating breathable mesh construction, midsole cushioning, and real-world track movement.',
+    videoSrc: withBase(
+      'assets/aistudio/Untitled_Scene_11-03_00_33_52_20261102194413_4ab59636.mp4'
+    ),
+  },
+  {
+    id: 'the-last-signal',
+    title: 'The Last Signal',
+    category: 'Cinematic Storytelling',
+    length: '58s',
+    whereUsed: 'YouTube showcase, teasers & storytelling reels',
+    whatItExplains:
+      'Full narrative trailer combining voiceover pacing, futuristic visual effects, and animated title typography.',
+    videoSrc: withBase(
+      'assets/aistudio/Last_Signal_20261104184317_0e461c4e.mp4'
+    ),
   },
 ];

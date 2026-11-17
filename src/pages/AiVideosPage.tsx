@@ -1,16 +1,25 @@
-import { Check } from 'lucide-react';
+import { useState } from 'react';
+import { Check, Mail, Maximize2 } from 'lucide-react';
 import videosBackdrop from '../assets/images/bg_videos_obsidian_1794871450112.jpg';
 import { FaqItem, FaqList } from '../components/FaqList';
 import {
   HeroEntrance,
+  MagneticWrap,
   ParallaxText,
   RevealBlock,
+  SplitHeadline,
+  SpotlightCard,
   StaggerGrid,
   StaggerItem,
 } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
-import { PlaceholderFrame } from '../components/PlaceholderFrame';
-import { buildWhatsAppUrl, VIDEO_SAMPLES } from '../data/siteContent';
+import { VideoLightbox } from '../components/VideoLightbox';
+import {
+  buildEmailUrl,
+  SERVICE_PRICES,
+  VIDEO_SAMPLES,
+  VideoSample,
+} from '../data/siteContent';
 import { RouteLink } from '../router';
 
 const INCLUDED = [
@@ -23,8 +32,7 @@ const INCLUDED = [
 const QUESTIONS: FaqItem[] = [
   {
     question: 'How much does it cost?',
-    answer:
-      "Videos start from AUD $[price]. The final price depends on length and number of videos, and I'll send you a clear quote after a short chat. No obligation.",
+    answer: `Videos start from ${SERVICE_PRICES.videos}. The final price depends on length and number of videos, and I'll send you a clear quote after a short chat. No obligation.`,
   },
   {
     question: 'Do I need to supply the script?',
@@ -37,7 +45,8 @@ const QUESTIONS: FaqItem[] = [
 ];
 
 export function AiVideosPage() {
-  const whatsappUrl = buildWhatsAppUrl('videos');
+  const [selectedVideo, setSelectedVideo] = useState<VideoSample | null>(null);
+  const emailUrl = buildEmailUrl('videos');
 
   const scrollToSamples = () => {
     const el = document.getElementById('samples');
@@ -53,11 +62,10 @@ export function AiVideosPage() {
         <PageHeroBackdrop imageSrc={videosBackdrop} />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
-            <ParallaxText>
-              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
-                Short videos that explain what you do in plain language
-              </h1>
-            </ParallaxText>
+            <SplitHeadline
+              text="Short videos that explain what you do in plain language"
+              className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]"
+            />
             <ParallaxText>
               <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
                 15 to 60 second explainers and social clips for diabetes and health businesses.
@@ -65,17 +73,19 @@ export function AiVideosPage() {
             </ParallaxText>
             <ParallaxText>
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <RouteLink
-                  to="/contact"
-                  service="AI Videos"
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                >
-                  Get a free sample video
-                </RouteLink>
+                <MagneticWrap>
+                  <RouteLink
+                    to="/contact"
+                    service="AI Videos"
+                    className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                  >
+                    Get a free sample video
+                  </RouteLink>
+                </MagneticWrap>
                 <button
                   type="button"
                   onClick={scrollToSamples}
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                 >
                   Watch samples
                 </button>
@@ -110,28 +120,34 @@ export function AiVideosPage() {
                 </ul>
               </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
-                <div className="space-y-4">
+              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
+                <div className="relative z-10 space-y-4">
                   <h3 className="font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
                     Pricing &amp; turnaround
                   </h3>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from AUD $[price]. Every project is quoted after a short chat, so you only pay for what you need.
+                    Starting from{' '}
+                    <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
+                      {SERVICE_PRICES.videos}
+                    </span>
+                    . Every project is quoted after a short chat, so you only pay for what you need.
                   </p>
                   <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
                     Turnaround: [time].
                   </p>
                 </div>
-                <div className="mt-8">
-                  <RouteLink
-                    to="/contact"
-                    service="AI Videos"
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                  >
-                    Get a quote
-                  </RouteLink>
+                <div className="relative z-10 mt-8">
+                  <MagneticWrap>
+                    <RouteLink
+                      to="/contact"
+                      service="AI Videos"
+                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                    >
+                      Get a quote
+                    </RouteLink>
+                  </MagneticWrap>
                 </div>
-              </div>
+              </SpotlightCard>
             </div>
           </RevealBlock>
         </div>
@@ -142,25 +158,53 @@ export function AiVideosPage() {
         id="samples"
         className="scroll-mt-20 border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian"
       >
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-            <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">
-              Samples and past work
-            </h2>
-            <p className="text-sm text-ink-muted dark:text-[#96948C]">
-              Placeholder thumbnails — ready for video embeds
-            </p>
+            <div className="space-y-2">
+              <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">
+                Samples and past work
+              </h2>
+              <p className="text-sm text-ink-muted dark:text-[#96948C]">
+                Play any video inline or open it in the full-screen viewer.
+              </p>
+            </div>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-8 md:grid-cols-3">
+          <StaggerGrid className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {VIDEO_SAMPLES.map((sample) => (
               <StaggerItem key={sample.id}>
-                <article className="group flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne/60 sm:p-6 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/55">
-                  <div>
-                    <PlaceholderFrame kind="video" label={sample.label} />
-                    <h3 className="mt-5 font-display text-base font-semibold text-ink dark:text-[#F5F4F0]">
-                      {sample.projectName}, {sample.length}, {sample.whereUsed}
+                <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 transition-colors duration-200 hover:border-champagne/65 sm:p-6 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/55">
+                  <div className="relative z-10">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-ivory-border bg-black dark:border-obsidian-border">
+                      <video
+                        src={sample.videoSrc}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+
+                    <div className="mt-5 flex items-center justify-between gap-3">
+                      <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                        {sample.category} &middot;{' '}
+                        <span className="font-mono-data">{sample.length}</span>
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedVideo(sample)}
+                        aria-label={`Open ${sample.title} in full-screen player`}
+                        className="inline-flex items-center gap-1 text-xs font-medium text-champagne-deep transition-colors duration-150 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:text-champagne-light dark:hover:text-[#F5F4F0]"
+                      >
+                        <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>Expand</span>
+                      </button>
+                    </div>
+
+                    <h3 className="mt-1.5 font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
+                      {sample.title}
                     </h3>
+
                     <dl className="mt-3 space-y-2 text-sm leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
                       <div>
                         <dt className="font-semibold text-ink dark:text-[#F5F4F0]">
@@ -168,28 +212,27 @@ export function AiVideosPage() {
                         </dt>
                         <dd>{sample.whatItExplains}</dd>
                       </div>
-                      {sample.result && (
-                        <div>
-                          <dt className="font-semibold text-ink dark:text-[#F5F4F0]">
-                            Result or comment:
-                          </dt>
-                          <dd>{sample.result}</dd>
-                        </div>
-                      )}
+                      <div>
+                        <dt className="font-semibold text-ink dark:text-[#F5F4F0]">
+                          Where it is used:
+                        </dt>
+                        <dd>{sample.whereUsed}</dd>
+                      </div>
                     </dl>
                   </div>
 
-                  <div className="mt-6 border-t border-ivory-border pt-4 dark:border-obsidian-border">
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-10 items-center justify-center rounded-lg border border-ivory-border bg-ivory px-4 py-2 text-sm font-medium text-ink whitespace-nowrap transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
-                    >
-                      Want a video like this? Message me
-                    </a>
+                  <div className="relative z-10 mt-6 border-t border-ivory-border pt-4 dark:border-obsidian-border">
+                    <MagneticWrap strength={0.14} className="w-full">
+                      <a
+                        href={emailUrl}
+                        className="luxury-shimmer-btn inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                      >
+                        <Mail className="h-4 w-4" aria-hidden="true" />
+                        <span>Want a video like this? Email me</span>
+                      </a>
+                    </MagneticWrap>
                   </div>
-                </article>
+                </SpotlightCard>
               </StaggerItem>
             ))}
           </StaggerGrid>
@@ -233,6 +276,11 @@ export function AiVideosPage() {
           </RevealBlock>
         </div>
       </section>
+
+      <VideoLightbox
+        video={selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+      />
     </div>
   );
 }

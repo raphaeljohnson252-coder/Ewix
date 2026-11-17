@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ExternalLink, X } from 'lucide-react';
-import { buildWhatsAppUrl, WebsiteProject } from '../data/siteContent';
+import { Mail, X } from 'lucide-react';
+import { buildEmailUrl, WebsiteProject } from '../data/siteContent';
 
 interface ProjectLightboxProps {
   project: WebsiteProject | null;
@@ -26,7 +26,7 @@ export function ProjectLightbox({ project, onClose }: ProjectLightboxProps) {
     };
   }, [project, onClose]);
 
-  const whatsappUrl = buildWhatsAppUrl('websites');
+  const emailUrl = buildEmailUrl('websites');
 
   return (
     <AnimatePresence>
@@ -133,13 +133,11 @@ export function ProjectLightbox({ project, onClose }: ProjectLightboxProps) {
 
                 <div className="space-y-3 border-t border-obsidian-border pt-4">
                   <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2.5 text-sm font-semibold text-obsidian transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                    href={emailUrl}
+                    className="luxury-shimmer-btn inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2.5 text-sm font-semibold text-obsidian transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                   >
-                    <span>Want something like this? Message me</span>
-                    <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <span>Want something like this? Email me</span>
                   </a>
                 </div>
               </div>

@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Check, Maximize2 } from 'lucide-react';
+import { Check, Mail, Maximize2 } from 'lucide-react';
 import websitesBackdrop from '../assets/images/bg_websites_obsidian_1794871448351.jpg';
 import { FaqItem, FaqList } from '../components/FaqList';
 import {
   HeroEntrance,
+  MagneticWrap,
   ParallaxText,
   RevealBlock,
+  SplitHeadline,
+  SpotlightCard,
   StaggerGrid,
   StaggerItem,
 } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import { ProjectLightbox } from '../components/ProjectLightbox';
 import {
-  buildWhatsAppUrl,
+  buildEmailUrl,
+  SERVICE_PRICES,
   WEBSITE_PROJECTS,
   WebsiteCategory,
   WebsiteProject,
@@ -39,8 +43,7 @@ const CATEGORIES: WebsiteCategory[] = [
 const QUESTIONS: FaqItem[] = [
   {
     question: 'How much does it cost?',
-    answer:
-      "Projects start from AUD $[price]. The final price depends on the size of the project, and I'll send you a clear quote after your free mockup. No obligation.",
+    answer: `Projects start from ${SERVICE_PRICES.websites}. The final price depends on the size of the project, and I'll send you a clear quote after your free mockup. No obligation.`,
   },
   {
     question: 'Can you use my own wording and photos?',
@@ -62,7 +65,7 @@ export function WebsitesPage() {
   const [selectedProject, setSelectedProject] =
     useState<WebsiteProject | null>(null);
 
-  const whatsappUrl = buildWhatsAppUrl('websites');
+  const emailUrl = buildEmailUrl('websites');
 
   const filteredProjects =
     filter === 'All'
@@ -83,11 +86,10 @@ export function WebsitesPage() {
         <PageHeroBackdrop imageSrc={websitesBackdrop} />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
           <HeroEntrance className="max-w-3xl space-y-6">
-            <ParallaxText>
-              <h1 className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]">
-                Websites that make it easy to book, order and contact you
-              </h1>
-            </ParallaxText>
+            <SplitHeadline
+              text="Websites that make it easy to book, order and contact you"
+              className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]"
+            />
             <ParallaxText>
               <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
                 Clear, fast, mobile-friendly websites for diabetes and health businesses.
@@ -95,17 +97,19 @@ export function WebsitesPage() {
             </ParallaxText>
             <ParallaxText>
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <RouteLink
-                  to="/contact"
-                  service="Websites"
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                >
-                  Get a free mockup
-                </RouteLink>
+                <MagneticWrap>
+                  <RouteLink
+                    to="/contact"
+                    service="Websites"
+                    className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                  >
+                    Get a free mockup
+                  </RouteLink>
+                </MagneticWrap>
                 <button
                   type="button"
                   onClick={scrollToSamples}
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                 >
                   See samples
                 </button>
@@ -140,28 +144,34 @@ export function WebsitesPage() {
                 </ul>
               </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
-                <div className="space-y-4">
+              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
+                <div className="relative z-10 space-y-4">
                   <h3 className="font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
                     Pricing &amp; turnaround
                   </h3>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from AUD $[price]. Every project is quoted after a free mockup and a short chat, so you only pay for what you need.
+                    Starting from{' '}
+                    <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
+                      {SERVICE_PRICES.websites}
+                    </span>
+                    . Every project is quoted after a free mockup and a short chat, so you only pay for what you need.
                   </p>
                   <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
                     Turnaround: [time].
                   </p>
                 </div>
-                <div className="mt-8">
-                  <RouteLink
-                    to="/contact"
-                    service="Websites"
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                  >
-                    Get a quote
-                  </RouteLink>
+                <div className="relative z-10 mt-8">
+                  <MagneticWrap>
+                    <RouteLink
+                      to="/contact"
+                      service="Websites"
+                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                    >
+                      Get a quote
+                    </RouteLink>
+                  </MagneticWrap>
                 </div>
-              </div>
+              </SpotlightCard>
             </div>
           </RevealBlock>
         </div>
@@ -207,7 +217,7 @@ export function WebsitesPage() {
                     {isSelected && (
                       <motion.span
                         layoutId="activeWebsiteCategory"
-                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                         className="absolute inset-0 rounded-md bg-champagne"
                       />
                     )}
@@ -221,21 +231,21 @@ export function WebsitesPage() {
           <StaggerGrid key={filter} className="mt-10 grid gap-8 md:grid-cols-2">
             {filteredProjects.map((project) => (
               <StaggerItem key={project.id}>
-                <article className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 transition-colors duration-200 hover:border-champagne/55 sm:p-6 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/50">
-                  <div>
+                <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 transition-colors duration-200 hover:border-champagne/65 sm:p-6 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/55">
+                  <div className="relative z-10">
                     <button
                       type="button"
                       onClick={() => setSelectedProject(project)}
                       aria-label={`Inspect full-page website capture for ${project.clientName}`}
-                      className="group relative block aspect-[16/10] w-full overflow-hidden rounded-lg border border-ivory-border bg-obsidian text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border"
+                      className="group/preview relative block aspect-[16/10] w-full overflow-hidden rounded-lg border border-ivory-border bg-obsidian text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border"
                     >
                       <img
                         src={project.imageSrc}
                         alt={project.imageAlt}
                         referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.025]"
+                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/preview:scale-[1.035]"
                       />
-                      <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-black/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-colors duration-150 group-hover:border-champagne/70 group-hover:text-champagne-light">
+                      <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-black/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-colors duration-150 group-hover/preview:border-champagne/70 group-hover/preview:text-champagne-light">
                         <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
                         <span>View full page</span>
                       </span>
@@ -288,15 +298,16 @@ export function WebsitesPage() {
                     </dl>
                   </div>
 
-                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-ivory-border pt-4 dark:border-obsidian-border">
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-10 items-center justify-center rounded-lg bg-champagne px-4 py-2 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                    >
-                      Want something like this? Message me
-                    </a>
+                  <div className="relative z-10 mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-ivory-border pt-4 dark:border-obsidian-border">
+                    <MagneticWrap strength={0.14}>
+                      <a
+                        href={emailUrl}
+                        className="luxury-shimmer-btn inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                      >
+                        <Mail className="h-4 w-4" aria-hidden="true" />
+                        <span>Want something like this? Email me</span>
+                      </a>
+                    </MagneticWrap>
                     <button
                       type="button"
                       onClick={() => setSelectedProject(project)}
@@ -305,7 +316,7 @@ export function WebsitesPage() {
                       Preview full design
                     </button>
                   </div>
-                </article>
+                </SpotlightCard>
               </StaggerItem>
             ))}
           </StaggerGrid>

@@ -1,14 +1,12 @@
 import {
-  buildWhatsAppUrl,
+  buildEmailUrl,
   BUSINESS_NAME,
   CONTACT_EMAIL,
   DESIGNER_NAME,
-  EMAIL_HREF,
   ServiceSlug,
-  WHATSAPP_NUMBER_DISPLAY,
 } from '../data/siteContent';
 import { RouteLink, useRouter } from '../router';
-import { RevealBlock } from './LuxuryMotion';
+import { MagneticWrap, RevealBlock } from './LuxuryMotion';
 
 function getServiceFromPath(pathname: string): ServiceSlug | undefined {
   if (pathname === '/websites') return 'websites';
@@ -19,7 +17,7 @@ function getServiceFromPath(pathname: string): ServiceSlug | undefined {
 
 export function SharedCtaAndFooter() {
   const { path } = useRouter();
-  const whatsappUrl = buildWhatsAppUrl(getServiceFromPath(path));
+  const emailUrl = buildEmailUrl(getServiceFromPath(path));
 
   return (
     <>
@@ -37,20 +35,20 @@ export function SharedCtaAndFooter() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3.5 shrink-0">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                >
-                  Message on WhatsApp
-                </a>
-                <a
-                  href={EMAIL_HREF}
+                <MagneticWrap>
+                  <a
+                    href={emailUrl}
+                    className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                  >
+                    Email me
+                  </a>
+                </MagneticWrap>
+                <RouteLink
+                  to="/contact"
                   className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-ivory px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                 >
-                  Email me
-                </a>
+                  Get a free mockup
+                </RouteLink>
               </div>
             </div>
           </RevealBlock>
@@ -66,25 +64,13 @@ export function SharedCtaAndFooter() {
                 &copy; 2026 {DESIGNER_NAME} &middot; {BUSINESS_NAME}. Web design and AI video for health businesses.
               </p>
               <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-ink-muted dark:text-[#96948C]">
-                <span>WhatsApp: </span>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono-data text-ink underline decoration-ivory-border underline-offset-4 transition-colors duration-150 hover:text-champagne-deep dark:text-[#E8E6DF] dark:decoration-obsidian-border-strong dark:hover:text-champagne-light"
-                >
-                  {WHATSAPP_NUMBER_DISPLAY}
-                </a>
-                <span aria-hidden="true">|</span>
                 <span>Email: </span>
                 <a
-                  href={EMAIL_HREF}
+                  href={emailUrl}
                   className="text-ink underline decoration-ivory-border underline-offset-4 transition-colors duration-150 hover:text-champagne-deep dark:text-[#E8E6DF] dark:decoration-obsidian-border-strong dark:hover:text-champagne-light"
                 >
                   {CONTACT_EMAIL}
                 </a>
-                <span aria-hidden="true">|</span>
-                <span>[Instagram or LinkedIn]</span>
               </p>
             </div>
 

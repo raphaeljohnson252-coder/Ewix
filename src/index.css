@@ -4,7 +4,7 @@
 @theme {
   --color-obsidian: #0A0A0A;
   --color-obsidian-surface: #121215;
-  --color-obsidian-elevated: #18181C;
+  --color-obsidian-elevated: #18181D;
   --color-obsidian-border: #242429;
   --color-obsidian-border-strong: #34343D;
 
@@ -79,6 +79,15 @@
   }
 }
 
+@keyframes ambientDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.015);
+  }
+}
+
 .glucose-trace-path {
   stroke-dasharray: var(--trace-length, 760);
   stroke-dashoffset: var(--trace-length, 760);
@@ -95,11 +104,40 @@
 .studio-marquee-track {
   display: flex;
   width: max-content;
-  animation: studioMarquee 36s linear infinite;
+  animation: studioMarquee 32s linear infinite;
 }
 
 .studio-marquee-track:hover {
   animation-play-state: paused;
+}
+
+.luxury-shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-shimmer-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-18deg);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.luxury-shimmer-btn:hover::after {
+  transform: translateX(300%) skewX(-18deg);
+}
+
+.hero-float-card {
+  animation: ambientDrift 7s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -117,6 +155,12 @@
   }
   .studio-marquee-track {
     animation: none;
+  }
+  .hero-float-card {
+    animation: none;
+  }
+  .luxury-shimmer-btn::after {
+    display: none;
   }
 }
 

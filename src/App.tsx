@@ -11,7 +11,11 @@ import {
   useReducedMotion,
 } from 'motion/react';
 import { Header } from './components/Header';
-import { APP_PAGE_VARIANTS, LUXURY_EASE } from './components/LuxuryMotion';
+import {
+  APP_PAGE_VARIANTS,
+  LUXURY_EASE,
+  ScrollProgressBar,
+} from './components/LuxuryMotion';
 import { SharedCtaAndFooter } from './components/SharedCtaAndFooter';
 import { RoutePath } from './data/siteContent';
 import { AiVideosPage } from './pages/AiVideosPage';
@@ -65,18 +69,29 @@ function AppShell() {
 
   return (
     <div className="flex min-h-screen flex-col bg-ivory text-ink dark:bg-obsidian dark:text-[#F5F4F0]">
+      <ScrollProgressBar />
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
 
-      {/* Subtle gold hairline route-reveal shimmer */}
+      {/* Cinematic Obsidian curtain wipe & gold hairline route-reveal shimmer */}
       {!shouldReduceMotion && (
-        <motion.div
-          key={`shimmer-${path}`}
-          aria-hidden="true"
-          initial={{ scaleX: 0, opacity: 0.9 }}
-          animate={{ scaleX: 1, opacity: 0 }}
-          transition={{ duration: 0.75, ease: LUXURY_EASE }}
-          className="pointer-events-none fixed inset-x-0 top-16 z-30 h-px origin-left bg-gradient-to-r from-transparent via-champagne to-transparent"
-        />
+        <>
+          <motion.div
+            key={`curtain-${path}`}
+            aria-hidden="true"
+            initial={{ scaleY: 1, opacity: 0.95 }}
+            animate={{ scaleY: 0, opacity: 0 }}
+            transition={{ duration: 0.58, ease: LUXURY_EASE }}
+            className="pointer-events-none fixed inset-0 top-16 z-30 origin-top bg-ivory dark:bg-obsidian"
+          />
+          <motion.div
+            key={`shimmer-${path}`}
+            aria-hidden="true"
+            initial={{ scaleX: 0, opacity: 0.95 }}
+            animate={{ scaleX: 1, opacity: 0 }}
+            transition={{ duration: 0.8, ease: LUXURY_EASE }}
+            className="pointer-events-none fixed inset-x-0 top-16 z-30 h-[2px] origin-left bg-gradient-to-r from-transparent via-champagne to-transparent"
+          />
+        </>
       )}
 
       <main className="relative flex-1">
