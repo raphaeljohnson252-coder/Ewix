@@ -26,11 +26,11 @@ import { WebsitesPage } from './pages/WebsitesPage';
 import { RouterProvider, useRouter } from './router';
 
 const PAGE_TITLES: Record<RoutePath, string> = {
-  '/': 'Ewixstudio — Websites, Flyers & AI Videos by Raphael',
+  '/': 'Ewixstudio — Websites, Flyers & AI Videos for Health Businesses',
   '/websites': 'Websites for Diabetes & Health Businesses — Ewixstudio',
   '/flyers-and-print': 'Flyers & Print for Health Businesses — Ewixstudio',
   '/ai-videos': 'AI Videos for Diabetes & Health Businesses — Ewixstudio',
-  '/contact': 'Contact Raphael (Ewixstudio) — Request a Free Homepage Mockup',
+  '/contact': 'Contact Ewixstudio — Request a Free Homepage Mockup',
 };
 
 function AppShell() {

@@ -8,8 +8,6 @@ export type RoutePath =
 export type ServiceSlug = 'websites' | 'flyers' | 'videos';
 
 export const BUSINESS_NAME = 'Ewixstudio';
-export const DESIGNER_NAME = 'Raphael';
-export const LOCATION_TEXT = 'Lagos, Nigeria';
 export const CONTACT_EMAIL = 'ewixstudio25@gmail.com';
 export const EMAIL_HREF =
   'mailto:ewixstudio25@gmail.com?subject=Portfolio%20enquiry%20for%20Ewixstudio';
@@ -35,11 +33,11 @@ export function buildEmailUrl(service?: ServiceSlug): string {
 
   const bodyByService: Record<ServiceSlug, string> = {
     websites:
-      "Hi Raphael, I saw your portfolio and I'd like a quote for a website for my business.",
+      "Hi Ewixstudio team, I saw your portfolio and I'd like a quote for a website for my business.",
     flyers:
-      "Hi Raphael, I saw your portfolio and I'd like a quote for flyers and print for my business.",
+      "Hi Ewixstudio team, I saw your portfolio and I'd like a quote for flyers and print for my business.",
     videos:
-      "Hi Raphael, I saw your portfolio and I'd like a quote for an AI video for my business.",
+      "Hi Ewixstudio team, I saw your portfolio and I'd like a quote for an AI video for my business.",
   };
 
   const subject = service
@@ -47,7 +45,7 @@ export function buildEmailUrl(service?: ServiceSlug): string {
     : 'Project quote enquiry — Ewixstudio';
   const body = service
     ? bodyByService[service]
-    : "Hi Raphael, I saw your portfolio and I'd like a quote for my business.";
+    : "Hi Ewixstudio team, I saw your portfolio and I'd like a quote for my business.";
 
   return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
@@ -280,34 +278,99 @@ export const WEBSITE_PROJECTS: WebsiteProject[] = [
 
 export interface FlyerSample {
   id: string;
-  label: string;
-  clientName: string;
-  flyerType: string;
+  title: string;
+  styleLabel: string;
+  format: string;
   whereUsed: string;
-  result?: string;
+  summary: string;
+  imageSrc: string;
+  imageAlt: string;
 }
 
 export const FLYER_SAMPLES: FlyerSample[] = [
   {
-    id: 'flyer-sample-1',
-    label: 'Placeholder sample 1',
-    clientName: '[Client name]',
-    flyerType: '[type of flyer]',
-    whereUsed: '[clinic, event, online]',
+    id: 'flyer-care-campaign',
+    title: 'Stay Healthy, Stay Strong Campaign Layout',
+    styleLabel: 'Warm Care & Wellness Flyer',
+    format: 'A4 Print & Social Square',
+    whereUsed: 'Community clinics, patient welcome desks & wellness promos',
+    summary:
+      'Clean sky-toned typography paired with approachable lifestyle photography and a clear website footer strip.',
+    imageSrc: withBase(
+      'assets/aistudio/8c8c2be4b33bc13b9049fa8a88378e46_64444924.jpg'
+    ),
+    imageAlt:
+      'Healthcare awareness flyer example showing bright headline typography above smiling older adults and clinic website link',
   },
   {
-    id: 'flyer-sample-2',
-    label: 'Placeholder sample 2',
-    clientName: '[Client name]',
-    flyerType: '[type of flyer]',
-    whereUsed: '[clinic, event, online]',
+    id: 'flyer-root-cause-care',
+    title: 'Personalized Care Consultation Handout',
+    styleLabel: 'Functional & Clinic Handout',
+    format: 'A4 & A5 Print Handout',
+    whereUsed: 'Diabetes & integrative health practices, waiting rooms & referrals',
+    summary:
+      'Bold contrast headline hierarchy highlighting personalized treatment paths with booking button and direct email footer.',
+    imageSrc: withBase(
+      'assets/aistudio/a117138b297d7f85fc4d1c2e02e887ee_4034ff69.jpg'
+    ),
+    imageAlt:
+      'Green and neutral healthcare clinic flyer highlighting root-cause care, patient consultation photo, and booking strip',
   },
   {
-    id: 'flyer-sample-3',
-    label: 'Placeholder sample 3',
-    clientName: '[Client name]',
-    flyerType: '[type of flyer]',
-    whereUsed: '[clinic, event, online]',
+    id: 'flyer-preventative-poster',
+    title: 'Patient Trust & Preventative Care Poster',
+    styleLabel: 'Clinical Reception Poster',
+    format: 'Poster & Digital Promo',
+    whereUsed: 'Clinic reception boards, health screening drives & community notices',
+    summary:
+      'Calm teal clinical palette centering doctor-patient connection around a crisp callout and appointment contact bar.',
+    imageSrc: withBase(
+      'assets/aistudio/c4415b2f5528275fc476e6b8af30054d_3ddc7591.jpg'
+    ),
+    imageAlt:
+      'Teal healthcare clinic flyer featuring clinician and older couple framed inside a heart motif with appointment phone and web details',
+  },
+  {
+    id: 'flyer-aged-care-program',
+    title: 'Aged Care & Support Program Sheet',
+    styleLabel: 'Accredited Program Brochure',
+    format: 'A4 Information & Enrolment Sheet',
+    whereUsed: 'Australian care providers, support services & recruitment',
+    summary:
+      'Structured accreditation header, icon-led benefit checklist, and high-visibility phone and website callouts.',
+    imageSrc: withBase(
+      'assets/aistudio/5ece360f034d2e6cd50661f56f31cd95_374b474a.jpg'
+    ),
+    imageAlt:
+      'Australian aged care program flyer featuring caregiver and senior resident, key bullet checklist, and contact bar',
+  },
+  {
+    id: 'flyer-medical-conversion',
+    title: 'Transparent Care Direct Booking Flyer',
+    styleLabel: 'Clinical Patient Conversion Flyer',
+    format: 'Print Handout & Paid Social',
+    whereUsed: 'Medical centres, specialist clinics & consultation offers',
+    summary:
+      'Moody clinical photography paired with an action-driven headline, clear value proposition, and appointment bar.',
+    imageSrc: withBase(
+      'assets/aistudio/dce194807fd6807b3a71bde4656aa9c0_c8c8b7c4.jpg'
+    ),
+    imageAlt:
+      'Deep teal medical center flyer showing doctor speaking with bedside patient, bold white headline, and booking footer',
+  },
+  {
+    id: 'flyer-awareness-social',
+    title: 'Healthcare Awareness & Event Poster',
+    styleLabel: 'Clinical Event & Social Card',
+    format: 'Portrait Social & Print Card',
+    whereUsed: 'Health awareness campaigns, clinic updates & social feeds',
+    summary:
+      'Layered script headline over clinical photography with dedicated bottom clinic address and contact markers.',
+    imageSrc: withBase(
+      'assets/aistudio/05eb7d78e4b7b32e54f49cffff5863bc_d245d2bd.jpg'
+    ),
+    imageAlt:
+      'Blue healthcare awareness poster featuring clinician with stethoscope and layered display typography',
   },
 ];
 

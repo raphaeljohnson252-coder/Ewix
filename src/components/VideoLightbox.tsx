@@ -100,7 +100,7 @@ export function VideoLightbox({ video, onClose }: VideoLightboxProps) {
                 className="luxury-shimmer-btn inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-champagne px-5 py-2.5 text-sm font-semibold text-obsidian whitespace-nowrap transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
               >
                 <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Want a video like this? Email me</span>
+                <span>Want a video like this? Email us</span>
               </a>
             </div>
           </motion.div>

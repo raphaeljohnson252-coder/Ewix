@@ -32,15 +32,15 @@ const INCLUDED = [
 const QUESTIONS: FaqItem[] = [
   {
     question: 'How much does it cost?',
-    answer: `Videos start from ${SERVICE_PRICES.videos}. The final price depends on length and number of videos, and I'll send you a clear quote after a short chat. No obligation.`,
+    answer: `Videos start from ${SERVICE_PRICES.videos}. The final price depends on length and number of videos, and we'll send you a clear quote after a short chat. No obligation.`,
   },
   {
-    question: 'Do I need to supply the script?',
-    answer: 'You can, or I draft one for you to approve.',
+    question: 'Do we need to supply the script?',
+    answer: 'You can, or our team can draft a script for your review and approval.',
   },
   {
     question: 'Can you avoid health claims?',
-    answer: 'Yes. I follow wording you approve.',
+    answer: 'Yes. We follow the approved wording supplied by your clinic or compliance team.',
   },
 ];
 
@@ -234,7 +234,7 @@ export function AiVideosPage() {
                         className="luxury-shimmer-btn inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                       >
                         <Mail className="h-4 w-4" aria-hidden="true" />
-                        <span>Want a video like this? Email me</span>
+                        <span>Want a video like this? Email us</span>
                       </a>
                     </MagneticWrap>
                   </div>

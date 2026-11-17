@@ -202,7 +202,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
               href={emailUrl}
               className="luxury-shimmer-btn inline-flex h-10 items-center justify-center rounded-lg bg-champagne px-4 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
             >
-              Message me
+              Message us
             </a>
           </MagneticWrap>
 

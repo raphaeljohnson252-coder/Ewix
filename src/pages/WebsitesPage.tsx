@@ -46,20 +46,20 @@ const CATEGORIES: WebsiteCategory[] = [
 const QUESTIONS: FaqItem[] = [
   {
     question: 'How much does it cost?',
-    answer: `Projects start from ${SERVICE_PRICES.websites}. The final price depends on the size of the project, and I'll send you a clear quote after your free mockup. No obligation.`,
+    answer: `Projects start from ${SERVICE_PRICES.websites}. The final price depends on the size of the project, and we'll send you a clear quote after your free mockup. No obligation.`,
   },
   {
-    question: 'Can you use my own wording and photos?',
-    answer: 'Yes. I work from the wording and images you supply and approve.',
+    question: 'Can you use our own wording and photos?',
+    answer: 'Yes. We work directly from the wording and images you supply and approve.',
   },
   {
-    question: 'Can you improve my current website instead of starting over?',
+    question: 'Can you improve our current website instead of starting over?',
     answer:
-      "Yes. Send me the link and I'll tell you what I would change first.",
+      "Yes. Send us the link and we'll let you know what our team would improve first.",
   },
   {
-    question: 'What do you need from me?',
-    answer: '[List: logo, photos, services list, contact details.]',
+    question: 'What do you need from us to get started?',
+    answer: 'Your logo, photos, services list, and business contact details.',
   },
 ];
 
@@ -284,7 +284,7 @@ export function WebsitesPage() {
                       </div>
                       <div>
                         <dt className="font-semibold text-ink dark:text-[#F5F4F0]">
-                          What I did:
+                          What we delivered:
                         </dt>
                         <dd>{project.whatIDid}</dd>
                       </div>
@@ -316,7 +316,7 @@ export function WebsitesPage() {
                         className="luxury-shimmer-btn inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                       >
                         <Mail className="h-4 w-4" aria-hidden="true" />
-                        <span>Want something like this? Email me</span>
+                        <span>Want something like this? Email us</span>
                       </a>
                     </MagneticWrap>
                     <button

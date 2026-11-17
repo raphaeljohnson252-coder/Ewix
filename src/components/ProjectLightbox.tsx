@@ -109,7 +109,7 @@ export function ProjectLightbox({ project, onClose }: ProjectLightboxProps) {
 
                   <div>
                     <h3 className="text-xs font-medium text-[#96948C]">
-                      What I did
+                      What we delivered
                     </h3>
                     <p className="mt-1 text-sm leading-relaxed text-[#C8C6BE]">
                       {project.whatIDid}
@@ -140,7 +140,7 @@ export function ProjectLightbox({ project, onClose }: ProjectLightboxProps) {
                     className="luxury-shimmer-btn inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-champagne px-4 py-2.5 text-sm font-semibold text-obsidian transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                   >
                     <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                    <span>Want something like this? Email me</span>
+                    <span>Want something like this? Email us</span>
                   </a>
                 </div>
               </div>

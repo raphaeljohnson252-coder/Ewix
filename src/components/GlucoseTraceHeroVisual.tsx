@@ -1,38 +1,105 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface TracePoint {
+interface ActiveCheckpoint {
   x: number;
   y: number;
   time: string;
-  mmol: string;
+  label: string;
+  windowNote: string;
 }
 
-const TRACE_POINTS: TracePoint[] = [
-  { x: 52, y: 146, time: '08:00', mmol: '6.4 mmol/L' },
-  { x: 134, y: 124, time: '10:30', mmol: '7.8 mmol/L' },
-  { x: 222, y: 152, time: '13:00', mmol: '6.0 mmol/L' },
-  { x: 316, y: 112, time: '15:30', mmol: '8.5 mmol/L' },
-  { x: 412, y: 142, time: '18:00', mmol: '6.7 mmol/L' },
-  { x: 526, y: 124, time: '20:00', mmol: '7.8 mmol/L' },
+const ACTIVE_CHECKPOINTS: ActiveCheckpoint[] = [
+  {
+    x: 56,
+    y: 118,
+    time: '00:00',
+    label: 'Active · Global Night Desk',
+    windowNote: 'Australia daytime overlap (morning AEST)',
+  },
+  {
+    x: 150,
+    y: 96,
+    time: '04:00',
+    label: 'Peak Focus · Mockup Builds',
+    windowNote: 'Deep design sprints & fast email replies',
+  },
+  {
+    x: 246,
+    y: 108,
+    time: '09:00',
+    label: 'Peak Studio · Client Reviews',
+    windowNote: 'Homepage previews, websites & edits',
+  },
+  {
+    x: 342,
+    y: 94,
+    time: '14:00',
+    label: 'Peak Production · AI Videos & Print',
+    windowNote: 'Flyers, clinic handouts & motion clips',
+  },
+  {
+    x: 438,
+    y: 112,
+    time: '19:00',
+    label: 'Active · Evening Revisions',
+    windowNote: 'Same-day refinements & delivery checks',
+  },
+  {
+    x: 526,
+    y: 100,
+    time: '23:59',
+    label: 'Always Active · 24h Coverage',
+    windowNote: 'Send your brief anytime via email',
+  },
 ];
+
+function formatLagosTime(): string {
+  try {
+    return new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Africa/Lagos',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).format(new Date());
+  } catch {
+    return 'Active now';
+  }
+}
 
 export function GlucoseTraceHeroVisual() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const activePoint =
-    activeIndex !== null ? TRACE_POINTS[activeIndex] : TRACE_POINTS[5];
+  const [lagosTime, setLagosTime] = useState<string>(formatLagosTime);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setLagosTime(formatLagosTime());
+    }, 30000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const currentPoint =
+    activeIndex !== null
+      ? ACTIVE_CHECKPOINTS[activeIndex]
+      : ACTIVE_CHECKPOINTS[5];
 
   return (
     <div
       className="w-full rounded-xl border border-ivory-border bg-white/95 p-6 backdrop-blur-md sm:p-7 dark:border-obsidian-border dark:bg-obsidian-surface/90"
-      aria-label="Illustration of a steady glucose trace line staying inside a green target band"
+      aria-label="24-hour active studio hours trace showing continuous availability across global time zones"
       role="img"
     >
-      <div className="mb-4 flex items-center justify-between gap-4 border-b border-ivory-border pb-3 dark:border-obsidian-border">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-ivory-border pb-3 dark:border-obsidian-border">
         <span className="font-mono-data text-xs text-ink-muted dark:text-[#C8C6BE]">
-          {activePoint.time} &middot; {activePoint.mmol}
+          {activeIndex !== null ? (
+            <>
+              {currentPoint.time} &middot; {currentPoint.label}
+            </>
+          ) : (
+            <>Lagos {lagosTime} WAT &middot; Always Active</>
+          )}
         </span>
         <span className="font-mono-data text-xs text-[#157A45] dark:text-[#34D399]">
-          Target band 3.9–10.0
+          24h Active Band
         </span>
       </div>
 
@@ -44,14 +111,14 @@ export function GlucoseTraceHeroVisual() {
       >
         <defs>
           <linearGradient id="targetBandGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#10B981" stopOpacity="0.14" />
+            <stop offset="0%" stopColor="#10B981" stopOpacity="0.16" />
             <stop offset="100%" stopColor="#10B981" stopOpacity="0.06" />
           </linearGradient>
         </defs>
 
         {/* Horizontal faint reference grid lines */}
         <line
-          x1="44"
+          x1="48"
           y1="42"
           x2="536"
           y2="42"
@@ -59,7 +126,7 @@ export function GlucoseTraceHeroVisual() {
           strokeWidth="1"
         />
         <line
-          x1="44"
+          x1="48"
           y1="232"
           x2="536"
           y2="232"
@@ -67,63 +134,63 @@ export function GlucoseTraceHeroVisual() {
           strokeWidth="1"
         />
 
-        {/* Green target band */}
+        {/* Continuous Always-Active Target Band */}
         <rect
-          x="44"
-          y="88"
-          width="492"
-          height="98"
+          x="48"
+          y="76"
+          width="488"
+          height="108"
           rx="4"
           fill="url(#targetBandGrad)"
         />
         <line
-          x1="44"
-          y1="88"
+          x1="48"
+          y1="76"
           x2="536"
-          y2="88"
+          y2="76"
           className="stroke-[#16A34A]/45 dark:stroke-[#34D399]/40"
           strokeWidth="1.25"
           strokeDasharray="4 4"
         />
         <line
-          x1="44"
-          y1="186"
+          x1="48"
+          y1="184"
           x2="536"
-          y2="186"
+          y2="184"
           className="stroke-[#16A34A]/45 dark:stroke-[#34D399]/40"
           strokeWidth="1.25"
           strokeDasharray="4 4"
         />
 
-        {/* Australian mmol/L scale markers */}
+        {/* Availability level labels */}
         <text
-          x="36"
-          y="92"
+          x="40"
+          y="80"
           textAnchor="end"
           className="fill-[#157A45] dark:fill-[#34D399] font-mono-data text-[11px]"
         >
-          10.0
+          Peak
         </text>
         <text
-          x="36"
-          y="141"
+          x="40"
+          y="133"
           textAnchor="end"
           className="fill-ink-muted dark:fill-[#96948C] font-mono-data text-[11px]"
         >
-          7.0
+          Active
         </text>
         <text
-          x="36"
-          y="190"
+          x="40"
+          y="187"
           textAnchor="end"
           className="fill-[#157A45] dark:fill-[#34D399] font-mono-data text-[11px]"
         >
-          3.9
+          Ready
         </text>
 
-        {/* Smooth glucose trace curve staying comfortably inside the green target band */}
+        {/* Smooth 24h continuous active trace staying consistently inside the active band */}
         <path
-          d="M 52 146 C 84 146, 102 126, 134 124 C 166 122, 186 150, 222 152 C 258 154, 278 114, 316 112 C 354 110, 376 144, 412 142 C 446 140, 472 118, 526 124"
+          d="M 56 118 C 92 118, 114 96, 150 96 C 186 96, 210 108, 246 108 C 282 108, 306 94, 342 94 C 378 94, 402 112, 438 112 C 474 112, 496 100, 526 100"
           className="glucose-trace-path stroke-champagne-deep dark:stroke-champagne-light"
           strokeWidth="3"
           strokeLinecap="round"
@@ -131,8 +198,8 @@ export function GlucoseTraceHeroVisual() {
           style={{ ['--trace-length' as string]: '560' }}
         />
 
-        {/* Interactive hover checkpoints along the trace */}
-        {TRACE_POINTS.map((point, idx) => (
+        {/* Interactive hover checkpoints across the 24-hour clock */}
+        {ACTIVE_CHECKPOINTS.map((point, idx) => (
           <g key={point.time}>
             {activeIndex === idx && (
               <line
@@ -168,29 +235,29 @@ export function GlucoseTraceHeroVisual() {
         {/* Endpoint halo */}
         <circle
           cx="526"
-          cy="124"
+          cy="100"
           r="9"
           className="glucose-trace-endpoint pointer-events-none stroke-champagne-deep/35 dark:stroke-champagne-light/40"
           strokeWidth="2"
         />
 
-        {/* Time axis labels */}
+        {/* 24-hour time axis labels */}
         <text
-          x="52"
+          x="56"
+          y="256"
+          className="fill-ink-muted dark:fill-[#96948C] font-mono-data text-[11px]"
+        >
+          00:00
+        </text>
+        <text
+          x="212"
           y="256"
           className="fill-ink-muted dark:fill-[#96948C] font-mono-data text-[11px]"
         >
           08:00
         </text>
         <text
-          x="208"
-          y="256"
-          className="fill-ink-muted dark:fill-[#96948C] font-mono-data text-[11px]"
-        >
-          12:00
-        </text>
-        <text
-          x="364"
+          x="368"
           y="256"
           className="fill-ink-muted dark:fill-[#96948C] font-mono-data text-[11px]"
         >
@@ -202,13 +269,13 @@ export function GlucoseTraceHeroVisual() {
           textAnchor="end"
           className="fill-ink-muted dark:fill-[#96948C] font-mono-data text-[11px]"
         >
-          20:00
+          24:00
         </text>
       </svg>
 
-      <div className="mt-3 flex items-center justify-between text-xs text-ink-muted dark:text-[#96948C]">
-        <span>mmol/L range</span>
-        <span>Clear, steady communication for patients</span>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-ink-muted dark:text-[#96948C]">
+        <span>{currentPoint.windowNote}</span>
+        <span>Always open for email briefs</span>
       </div>
     </div>
   );

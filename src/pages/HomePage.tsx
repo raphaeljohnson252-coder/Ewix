@@ -16,12 +16,14 @@ import {
   StaggerGrid,
   StaggerItem,
 } from '../components/LuxuryMotion';
+import { FlyerLightbox } from '../components/FlyerLightbox';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
-import { PlaceholderFrame } from '../components/PlaceholderFrame';
 import { ProjectLightbox } from '../components/ProjectLightbox';
 import { VideoLightbox } from '../components/VideoLightbox';
 import {
   BUSINESS_NAME,
+  FLYER_SAMPLES,
+  FlyerSample,
   REAL_TESTIMONIAL,
   RoutePath,
   SERVICE_PRICES,
@@ -63,22 +65,22 @@ const STEPS = [
   {
     number: '01',
     title: 'Free mockup',
-    text: 'You share your website or idea. I send a homepage mockup at no cost.',
+    text: 'Share your website or idea and our team sends a homepage mockup at no cost.',
   },
   {
     number: '02',
     title: 'Quote',
-    text: 'After a short chat, I send a fixed quote for the whole project, so you know the cost before we begin.',
+    text: 'After a short discovery exchange, we send a fixed quote for the whole project, so you know the cost before we begin.',
   },
   {
     number: '03',
     title: 'Build and review',
-    text: "I design and build using your wording, photos and branding. You give feedback and I make changes until you're happy.",
+    text: "We design and build using your wording, photos and branding. You review each milestone and we refine until you're happy.",
   },
   {
     number: '04',
     title: 'Launch and support',
-    text: 'I publish the work and stay available for updates.',
+    text: 'We publish the work and remain available for ongoing updates.',
   },
 ];
 
@@ -94,9 +96,11 @@ export function HomePage() {
   const { navigate } = useRouter();
   const [selectedProject, setSelectedProject] =
     useState<WebsiteProject | null>(null);
+  const [selectedFlyer, setSelectedFlyer] = useState<FlyerSample | null>(null);
   const [selectedVideo, setSelectedVideo] = useState<VideoSample | null>(null);
 
   const featuredWebsite = WEBSITE_PROJECTS[0]; // Midtown Dental
+  const featuredFlyers = [FLYER_SAMPLES[0], FLYER_SAMPLES[3], FLYER_SAMPLES[4]];
   const featuredVideo = VIDEO_SAMPLES[0]; // Diabetes Care Clinic Explainer
 
   const heroImages = [
@@ -124,7 +128,7 @@ export function HomePage() {
             <HeroEntrance className="space-y-6 lg:col-span-6">
               <ParallaxText>
                 <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
-                  {BUSINESS_NAME} &middot; Lagos, Nigeria &middot; Australia Health Focus
+                  {BUSINESS_NAME} &middot; Health &amp; Clinic Creative Studio
                 </p>
               </ParallaxText>
               <SplitHeadline
@@ -133,7 +137,7 @@ export function HomePage() {
               />
               <ParallaxText>
                 <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                  I design clear, mobile-friendly websites, flyers and short AI videos that help patients and customers find you, understand what you offer and get in touch.
+                  We design clear, mobile-friendly websites, flyers and short AI videos that help patients and customers find you, understand what you offer and get in touch.
                 </p>
               </ParallaxText>
               <ParallaxText>
@@ -151,7 +155,7 @@ export function HomePage() {
                     onClick={scrollToFeatured}
                     className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                   >
-                    See my work
+                    See our work
                   </button>
                 </div>
               </ParallaxText>
@@ -187,12 +191,12 @@ export function HomePage() {
         </div>
       </div>
 
-      {/* What I make */}
+      {/* What we make */}
       <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
-              What I make
+              What we make
             </h2>
             <p className="font-editorial text-lg italic text-ink-muted dark:text-[#C8C6BE]">
               Three focused services, matched to one brand look
@@ -290,27 +294,58 @@ export function HomePage() {
             {/* Stacked right column: Flyers & Print + AI Videos */}
             <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
               <StaggerItem>
-                <SpotlightCard className="h-full rounded-xl border border-ivory-border bg-white transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
-                  <button
-                    type="button"
-                    onClick={() => navigate('/flyers-and-print')}
-                    className="relative z-10 flex h-full w-full flex-col justify-between p-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                  >
-                    <PlaceholderFrame
-                      kind="flyer"
-                      label="Flyer placeholder"
-                      aspectClass="aspect-[16/9]"
-                    />
-                    <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                      <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
-                        [Client name], Flyers &amp; Print
-                      </p>
-                      <ArrowRight
-                        className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
-                        aria-hidden="true"
-                      />
+                <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-4 transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
+                  <div className="relative z-10 flex h-full w-full flex-col justify-between">
+                    <div className="grid aspect-[16/9] w-full grid-cols-3 gap-2.5 overflow-hidden rounded-lg border border-ivory-border bg-obsidian p-2.5 dark:border-obsidian-border">
+                      {featuredFlyers.map((flyer) => (
+                        <button
+                          key={flyer.id}
+                          type="button"
+                          onClick={() => setSelectedFlyer(flyer)}
+                          aria-label={`View flyer layout: ${flyer.title}`}
+                          className="group/flyer relative h-full w-full cursor-pointer overflow-hidden rounded-md border border-obsidian-border bg-obsidian-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                        >
+                          <img
+                            src={flyer.imageSrc}
+                            alt={flyer.imageAlt}
+                            referrerPolicy="no-referrer"
+                            loading="lazy"
+                            className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/flyer:scale-[1.04]"
+                          />
+                        </button>
+                      ))}
                     </div>
-                  </button>
+
+                    <div className="mt-4 flex items-center justify-between gap-2 px-1">
+                      <div className="min-w-0">
+                        <p className="truncate text-base font-medium text-ink dark:text-[#F5F4F0]">
+                          Healthcare Flyer Styles, Flyers &amp; Print
+                        </p>
+                        <p className="mt-0.5 truncate text-xs text-ink-muted dark:text-[#96948C]">
+                          A4 handouts, posters &amp; clinic social cards
+                        </p>
+                      </div>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedFlyer(featuredFlyers[1])}
+                          aria-label="Expand healthcare flyer preview"
+                          className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-md border border-ivory-border bg-ivory px-2.5 text-xs font-medium text-champagne-deep transition-colors duration-150 hover:border-champagne hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-champagne-light dark:hover:border-champagne-light dark:hover:text-[#F5F4F0]"
+                        >
+                          <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                          <span>Expand</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => navigate('/flyers-and-print')}
+                          aria-label="Go to Flyers & Print page"
+                          className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-ivory-border bg-ivory text-ink-muted transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                        >
+                          <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </SpotlightCard>
               </StaggerItem>
 
@@ -473,7 +508,7 @@ export function HomePage() {
                     Clear pricing, no surprises
                   </h2>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Each service has a minimal starting price in dollars ({SERVICE_PRICES.websites} for websites, {SERVICE_PRICES.flyers} for flyers, {SERVICE_PRICES.videos} for AI videos). After your free mockup and a short chat, I send you a fixed quote for the whole project.
+                    Each service has a minimal starting price in dollars ({SERVICE_PRICES.websites} for websites, {SERVICE_PRICES.flyers} for flyers, {SERVICE_PRICES.videos} for AI videos). After your free mockup and a short chat, we send you a fixed quote for the whole project.
                   </p>
                 </div>
                 <div className="relative z-10 mt-8">
@@ -495,7 +530,7 @@ export function HomePage() {
                     Designed with Australian health advertising rules in mind
                   </h2>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    I use wording you supply and approve, and I avoid claims like &quot;cures&quot; or &quot;reverses&quot;. Please check final wording with your own compliance adviser.
+                    We use wording you supply and approve, and avoid claims like &quot;cures&quot; or &quot;reverses&quot;. Please check final wording with your own compliance adviser.
                   </p>
                 </div>
 
@@ -519,6 +554,11 @@ export function HomePage() {
       <ProjectLightbox
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+      />
+
+      <FlyerLightbox
+        flyer={selectedFlyer}
+        onClose={() => setSelectedFlyer(null)}
       />
 
       <VideoLightbox

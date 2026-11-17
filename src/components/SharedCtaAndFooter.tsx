@@ -2,7 +2,6 @@ import {
   buildEmailUrl,
   BUSINESS_NAME,
   CONTACT_EMAIL,
-  DESIGNER_NAME,
   ServiceSlug,
 } from '../data/siteContent';
 import { RouteLink, useRouter } from '../router';
@@ -31,7 +30,7 @@ export function SharedCtaAndFooter() {
                   Ready to talk?
                 </h2>
                 <p className="text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                  Send me your website link and I&apos;ll reply with a free homepage mockup and a clear quote.
+                  Send us your website link and we&apos;ll reply with a free homepage mockup and a clear quote.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3.5 shrink-0">
@@ -40,7 +39,7 @@ export function SharedCtaAndFooter() {
                     href={emailUrl}
                     className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                   >
-                    Email me
+                    Email us
                   </a>
                 </MagneticWrap>
                 <RouteLink
@@ -61,7 +60,7 @@ export function SharedCtaAndFooter() {
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="space-y-2.5 text-sm text-ink-muted dark:text-[#C8C6BE]">
               <p className="font-medium text-ink dark:text-[#F5F4F0]">
-                &copy; 2026 {DESIGNER_NAME} &middot; {BUSINESS_NAME}. Web design and AI video for health businesses.
+                &copy; 2026 {BUSINESS_NAME}. Digital design, print and AI video for health businesses.
               </p>
               <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-ink-muted dark:text-[#96948C]">
                 <span>Email: </span>

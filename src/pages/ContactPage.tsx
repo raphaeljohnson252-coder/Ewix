@@ -14,9 +14,7 @@ import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import {
   BUSINESS_NAME,
   CONTACT_EMAIL,
-  DESIGNER_NAME,
   EMAIL_HREF,
-  LOCATION_TEXT,
 } from '../data/siteContent';
 import { useRouter } from '../router';
 
@@ -113,7 +111,7 @@ export function ContactPage() {
             <HeroEntrance className="space-y-6 lg:col-span-5">
               <ParallaxText>
                 <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
-                  {BUSINESS_NAME} &middot; {DESIGNER_NAME}
+                  {BUSINESS_NAME} &middot; New Project Enquiries
                 </p>
               </ParallaxText>
               <SplitHeadline
@@ -122,7 +120,7 @@ export function ContactPage() {
               />
               <ParallaxText>
                 <p className="text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                  Send me your website link and I&apos;ll reply with one specific improvement and a free homepage mockup. No obligation.
+                  Send us your website link and we&apos;ll reply with one specific improvement and a free homepage mockup. No obligation.
                 </p>
               </ParallaxText>
 
@@ -134,7 +132,7 @@ export function ContactPage() {
                       className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                     >
                       <Mail className="h-4 w-4" aria-hidden="true" />
-                      <span>Email me ({CONTACT_EMAIL})</span>
+                      <span>Email us ({CONTACT_EMAIL})</span>
                     </a>
                   </MagneticWrap>
                 </div>
@@ -142,7 +140,7 @@ export function ContactPage() {
 
               <ParallaxText>
                 <p className="pt-4 text-sm leading-relaxed text-ink-muted dark:text-[#96948C]">
-                  Based in {LOCATION_TEXT}, working with clients in Australia and worldwide. Everything is handled directly over email — I usually reply within 24 hours.
+                  Partnering with diabetes clinics, health practices, and wellness brands globally. All consultations and mockups are handled directly via email, with responses within 24 hours.
                 </p>
               </ParallaxText>
             </HeroEntrance>
@@ -160,7 +158,7 @@ export function ContactPage() {
                         />
                         <div className="space-y-2">
                           <h2 className="font-display text-xl font-semibold text-ink dark:text-[#F5F4F0]">
-                            Email ready for {DESIGNER_NAME} ({BUSINESS_NAME})
+                            Email ready for {BUSINESS_NAME}
                           </h2>
                           <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
                             Open your email app to send this straight to{' '}
