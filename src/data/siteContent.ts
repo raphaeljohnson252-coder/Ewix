@@ -15,9 +15,9 @@ export const EMAIL_HREF =
   'mailto:ewixstudio25@gmail.com?subject=Portfolio%20enquiry%20for%20Ewixstudio';
 
 export const SERVICE_PRICES: Record<ServiceSlug, string> = {
-  websites: '$150',
-  flyers: '$45',
-  videos: '$75',
+  websites: '$100',
+  flyers: '$50',
+  videos: '$50',
 };
 
 function withBase(relativePath: string): string {
@@ -323,6 +323,18 @@ export interface VideoSample {
 }
 
 export const VIDEO_SAMPLES: VideoSample[] = [
+  {
+    id: 'diabetes-care-explainer',
+    title: 'Diabetes Care Clinic Explainer',
+    category: 'Diabetes & Health Care',
+    length: '30s',
+    whereUsed: 'Clinic homepage, patient onboarding & social clips',
+    whatItExplains:
+      'Plain-language explainer moving from daily diabetes management overwhelm to clear clinic care plans and simple visit booking.',
+    videoSrc: withBase(
+      'assets/aistudio/Man_planning_at_kitchen_table_2969f572_a735a701.mp4'
+    ),
+  },
   {
     id: 'verdea-hydration-cream',
     title: 'Verdéa Botanical Hydration Cream',

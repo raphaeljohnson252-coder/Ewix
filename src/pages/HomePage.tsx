@@ -15,11 +15,14 @@ import {
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import { PlaceholderFrame } from '../components/PlaceholderFrame';
 import { ProjectLightbox } from '../components/ProjectLightbox';
+import { VideoLightbox } from '../components/VideoLightbox';
 import {
   BUSINESS_NAME,
   REAL_TESTIMONIAL,
   RoutePath,
   SERVICE_PRICES,
+  VIDEO_SAMPLES,
+  VideoSample,
   WEBSITE_PROJECTS,
   WebsiteProject,
 } from '../data/siteContent';
@@ -87,8 +90,10 @@ export function HomePage() {
   const { navigate } = useRouter();
   const [selectedProject, setSelectedProject] =
     useState<WebsiteProject | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<VideoSample | null>(null);
 
   const featuredWebsite = WEBSITE_PROJECTS[0]; // Midtown Dental
+  const featuredVideo = VIDEO_SAMPLES[0]; // Diabetes Care Clinic Explainer
 
   const scrollToFeatured = () => {
     const el = document.getElementById('featured-work');
@@ -298,27 +303,47 @@ export function HomePage() {
               </StaggerItem>
 
               <StaggerItem>
-                <SpotlightCard className="h-full rounded-xl border border-ivory-border bg-white transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
-                  <button
-                    type="button"
-                    onClick={() => navigate('/ai-videos')}
-                    className="relative z-10 flex h-full w-full flex-col justify-between p-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                  >
-                    <PlaceholderFrame
-                      kind="video"
-                      label="Video placeholder"
-                      aspectClass="aspect-[16/9]"
-                    />
-                    <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                      <p className="text-base font-medium text-ink dark:text-[#F5F4F0]">
-                        [Client name], AI Videos
-                      </p>
-                      <ArrowRight
-                        className="h-4 w-4 shrink-0 text-ink-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-champagne-deep dark:text-[#96948C] dark:group-hover:text-champagne-light"
-                        aria-hidden="true"
+                <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-4 transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
+                  <div className="relative z-10 flex h-full w-full flex-col justify-between">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-ivory-border bg-black dark:border-obsidian-border">
+                      <video
+                        src={featuredVideo.videoSrc}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        className="h-full w-full object-cover"
                       />
                     </div>
-                  </button>
+                    <div className="mt-4 flex items-center justify-between gap-2 px-1">
+                      <div className="min-w-0">
+                        <p className="truncate text-base font-medium text-ink dark:text-[#F5F4F0]">
+                          {featuredVideo.title}, AI Videos
+                        </p>
+                        <p className="mt-0.5 text-xs text-ink-muted dark:text-[#96948C]">
+                          {featuredVideo.category} &middot;{' '}
+                          <span className="font-mono-data">{featuredVideo.length}</span>
+                        </p>
+                      </div>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVideo(featuredVideo)}
+                          aria-label={`Expand ${featuredVideo.title}`}
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-ivory-border bg-ivory text-ink-muted transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                        >
+                          <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => navigate('/ai-videos')}
+                          aria-label="Go to AI Videos page"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-ivory-border bg-ivory text-ink-muted transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                        >
+                          <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </SpotlightCard>
               </StaggerItem>
             </div>
@@ -432,7 +457,7 @@ export function HomePage() {
                     Clear pricing, no surprises
                   </h2>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Each service has a minimal starting price in dollars ({SERVICE_PRICES.flyers} for flyers, {SERVICE_PRICES.videos} for AI videos, {SERVICE_PRICES.websites} for websites). After your free mockup and a short chat, I send you a fixed quote for the whole project.
+                    Each service has a minimal starting price in dollars ({SERVICE_PRICES.websites} for websites, {SERVICE_PRICES.flyers} for flyers, {SERVICE_PRICES.videos} for AI videos). After your free mockup and a short chat, I send you a fixed quote for the whole project.
                   </p>
                 </div>
                 <div className="relative z-10 mt-8">
@@ -478,6 +503,11 @@ export function HomePage() {
       <ProjectLightbox
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+      />
+
+      <VideoLightbox
+        video={selectedVideo}
+        onClose={() => setSelectedVideo(null)}
       />
     </div>
   );
