@@ -5,13 +5,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { RoutePath } from './data/siteContent';
+import { PUBLISHED_AI_VIDEO_INDUSTRIES, RoutePath } from './data/siteContent';
 
 const VALID_ROUTES: RoutePath[] = [
   '/',
   '/websites',
   '/flyers-and-print',
   '/ai-videos',
+  ...PUBLISHED_AI_VIDEO_INDUSTRIES.map((industry) => industry.path),
   '/contact',
 ];
 
@@ -29,6 +30,9 @@ function normalizePath(pathname: string): RoutePath {
   const trimmed = relative.replace(/\/+$/, '') || '/';
   if (VALID_ROUTES.includes(trimmed as RoutePath)) {
     return trimmed as RoutePath;
+  }
+  if (trimmed.startsWith('/ai-videos/')) {
+    return '/ai-videos';
   }
   return '/';
 }

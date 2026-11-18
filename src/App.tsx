@@ -17,7 +17,8 @@ import {
   ScrollProgressBar,
 } from './components/LuxuryMotion';
 import { SharedCtaAndFooter } from './components/SharedCtaAndFooter';
-import { RoutePath } from './data/siteContent';
+import { getPublishedIndustryByPath, RoutePath } from './data/siteContent';
+import { AiVideoIndustryPage } from './pages/AiVideoIndustryPage';
 import { AiVideosPage } from './pages/AiVideosPage';
 import { ContactPage } from './pages/ContactPage';
 import { FlyersPage } from './pages/FlyersPage';
@@ -30,6 +31,14 @@ const PAGE_TITLES: Record<RoutePath, string> = {
   '/websites': 'Websites for Diabetes & Health Businesses — Ewixstudio',
   '/flyers-and-print': 'Flyers & Print for Health Businesses — Ewixstudio',
   '/ai-videos': 'AI Videos for Diabetes & Health Businesses — Ewixstudio',
+  '/ai-videos/health':
+    'Health Clinics & Dietitians AI Videos — Ewixstudio',
+  '/ai-videos/cafes': 'Cafes & Restaurants AI Videos — Ewixstudio',
+  '/ai-videos/real-estate': 'Real Estate AI Videos — Ewixstudio',
+  '/ai-videos/fitness-beauty': 'Gyms & Salons AI Videos — Ewixstudio',
+  '/ai-videos/online-shops': 'Online Shops AI Videos — Ewixstudio',
+  '/ai-videos/dental-physio':
+    'Dental, Cosmetic & Physio AI Videos — Ewixstudio',
   '/contact': 'Contact Ewixstudio — Request a Free Homepage Mockup',
 };
 
@@ -66,6 +75,8 @@ function AppShell() {
       return next;
     });
   };
+
+  const activeIndustry = getPublishedIndustryByPath(path);
 
   return (
     <div className="flex min-h-screen flex-col bg-ivory text-ink dark:bg-obsidian dark:text-[#F5F4F0]">
@@ -115,6 +126,7 @@ function AppShell() {
             {path === '/websites' && <WebsitesPage />}
             {path === '/flyers-and-print' && <FlyersPage />}
             {path === '/ai-videos' && <AiVideosPage />}
+            {activeIndustry && <AiVideoIndustryPage industry={activeIndustry} />}
             {path === '/contact' && <ContactPage />}
           </motion.div>
         </AnimatePresence>

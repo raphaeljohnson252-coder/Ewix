@@ -1,8 +1,17 @@
+export type AiVideoIndustrySlug =
+  | 'health'
+  | 'cafes'
+  | 'real-estate'
+  | 'fitness-beauty'
+  | 'online-shops'
+  | 'dental-physio';
+
 export type RoutePath =
   | '/'
   | '/websites'
   | '/flyers-and-print'
   | '/ai-videos'
+  | `/ai-videos/${AiVideoIndustrySlug}`
   | '/contact';
 
 export type ServiceSlug = 'websites' | 'flyers' | 'videos';
@@ -13,9 +22,9 @@ export const EMAIL_HREF =
   'mailto:ewixstudio25@gmail.com?subject=Portfolio%20enquiry%20for%20Ewixstudio';
 
 export const SERVICE_PRICES: Record<ServiceSlug, string> = {
-  websites: '$100',
-  flyers: '$50',
-  videos: '$50',
+  websites: 'US$100',
+  flyers: 'US$50',
+  videos: 'US$50',
 };
 
 function withBase(relativePath: string): string {
@@ -382,6 +391,10 @@ export interface VideoSample {
   whereUsed: string;
   whatItExplains: string;
   videoSrc: string;
+  thumbnailSrc: string;
+  captionsSrc: string;
+  aspectRatio: '16:9' | '9:16';
+  industrySlug?: AiVideoIndustrySlug;
   result?: string;
 }
 
@@ -397,18 +410,34 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     videoSrc: withBase(
       'assets/aistudio/Man_planning_at_kitchen_table_2969f572_a735a701.mp4'
     ),
+    thumbnailSrc: withBase(
+      'assets/aistudio/thumbs/diabetes-care-explainer.jpg'
+    ),
+    captionsSrc: withBase(
+      'assets/aistudio/captions/diabetes-care-explainer.vtt'
+    ),
+    aspectRatio: '16:9',
+    industrySlug: 'health',
   },
   {
     id: 'verdea-hydration-cream',
     title: 'Verdéa Botanical Hydration Cream',
-    category: 'Wellness & Skincare',
+    category: 'Online Shops & Skincare',
     length: '20s',
-    whereUsed: 'Website hero, Instagram & wellness product campaigns',
+    whereUsed: 'Website hero, Instagram & online store campaigns',
     whatItExplains:
       'Calm botanical product showcase highlighting natural ingredients, whipped cream texture, and clean hydration messaging.',
     videoSrc: withBase(
       'assets/aistudio/Untitled_Scene_11-03_00_06_27_20261102190837_77d2e7f4.mp4'
     ),
+    thumbnailSrc: withBase(
+      'assets/aistudio/thumbs/verdea-hydration-cream.jpg'
+    ),
+    captionsSrc: withBase(
+      'assets/aistudio/captions/verdea-hydration-cream.vtt'
+    ),
+    aspectRatio: '16:9',
+    industrySlug: 'online-shops',
   },
   {
     id: 'hartman-cole-law',
@@ -421,11 +450,14 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     videoSrc: withBase(
       'assets/aistudio/create_ai_video_ads_for_4b02e8f6_3c3dd24f.mp4'
     ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/hartman-cole-law.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/hartman-cole-law.vtt'),
+    aspectRatio: '16:9',
   },
   {
     id: 'maple-ridge-residences',
     title: 'Maple Ridge Residences',
-    category: 'Property & Walkthrough',
+    category: 'Real Estate & Property',
     length: '30s',
     whereUsed: 'Social reels, website showcase & private viewing invites',
     whatItExplains:
@@ -433,11 +465,15 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     videoSrc: withBase(
       'assets/aistudio/I_will_create_AI_promo_5edb18ce_4b2344b1.mp4'
     ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/maple-ridge-residences.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/maple-ridge-residences.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'real-estate',
   },
   {
     id: 'savore-gourmet-burger',
     title: 'Savoré Signature Gourmet',
-    category: 'Food & Hospitality',
+    category: 'Cafes & Restaurants',
     length: '20s',
     whereUsed: 'Instagram Reels, TikTok & digital menu screens',
     whatItExplains:
@@ -445,11 +481,15 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     videoSrc: withBase(
       'assets/aistudio/Untitled_Scene_11-03_14_56_23_20261103095734_1c5e07c0.mp4'
     ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/savore-gourmet-burger.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/savore-gourmet-burger.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'cafes',
   },
   {
     id: 'velocity-x1-footwear',
     title: 'Velocity X1 Performance',
-    category: 'Athletic & Movement',
+    category: 'Online Shops & Footwear',
     length: '20s',
     whereUsed: 'Social video ads, product pages & launch campaigns',
     whatItExplains:
@@ -457,6 +497,10 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     videoSrc: withBase(
       'assets/aistudio/Untitled_Scene_11-03_00_33_52_20261102194413_4ab59636.mp4'
     ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/velocity-x1-footwear.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/velocity-x1-footwear.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'online-shops',
   },
   {
     id: 'the-last-signal',
@@ -469,5 +513,164 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     videoSrc: withBase(
       'assets/aistudio/Last_Signal_20261104184317_0e461c4e.mp4'
     ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/the-last-signal.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/the-last-signal.vtt'),
+    aspectRatio: '16:9',
   },
 ];
+
+export interface AiVideoIndustryConfig {
+  slug: AiVideoIndustrySlug;
+  path: `/ai-videos/${AiVideoIndustrySlug}`;
+  industryName: string;
+  headline: string;
+  description: string;
+  ideas: string[];
+  note?: string;
+  whatsappUrl: string;
+  videoIds: string[];
+  published: boolean;
+}
+
+export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
+  {
+    slug: 'health',
+    path: '/ai-videos/health',
+    industryName: 'Health Clinics & Dietitians',
+    headline: 'Videos that show patients what to expect',
+    description:
+      'Short, captioned videos for clinics, diabetes educators, dietitians and allied health, using only wording you approve.',
+    ideas: [
+      'What to expect at your first visit',
+      'How to prepare for your appointment',
+      'Meet the team',
+      'How to book and what to bring',
+      'Telehealth visits explained',
+    ],
+    note: 'I use wording you supply and approve and avoid treatment advice, results or health claims.',
+    whatsappUrl:
+      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20health%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+    videoIds: ['diabetes-care-explainer'],
+    published: true,
+  },
+  {
+    slug: 'cafes',
+    path: '/ai-videos/cafes',
+    industryName: 'Cafes & Restaurants',
+    headline: 'Videos that make people hungry for your menu',
+    description:
+      'Short, captioned clips for cafes and restaurants, ready for Instagram, TikTok and your website.',
+    ideas: [
+      'Dish spotlight',
+      'Weekend or seasonal special',
+      'Behind the counter',
+      'Meet the team',
+      'How to order and find us',
+    ],
+    whatsappUrl:
+      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20cafe%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+    videoIds: ['savore-gourmet-burger'],
+    published: true,
+  },
+  {
+    slug: 'real-estate',
+    path: '/ai-videos/real-estate',
+    industryName: 'Real Estate',
+    headline: 'Videos that help your listings stand out',
+    description:
+      'Short, captioned videos for agents and agencies, from agent introductions to neighbourhood highlights.',
+    ideas: [
+      'Agent introduction',
+      'Neighbourhood highlight',
+      'Listing teaser using your own photos',
+      'Open house announcement',
+      'Agency overview',
+    ],
+    note: "I use your real photos and details. I don't alter properties or invent features.",
+    whatsappUrl:
+      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20real%20estate%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+    videoIds: ['maple-ridge-residences'],
+    published: true,
+  },
+  {
+    slug: 'online-shops',
+    path: '/ai-videos/online-shops',
+    industryName: 'Online Shops',
+    headline: 'Product videos that show how it works',
+    description: '15-second product clips for Shopify and online stores.',
+    ideas: [
+      'Product demo',
+      'Unboxing clip',
+      'How it works in 15 seconds',
+      'Seasonal promotion',
+      'Delivery and returns explained',
+    ],
+    whatsappUrl:
+      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20online%20shop%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+    videoIds: ['verdea-hydration-cream', 'velocity-x1-footwear'],
+    published: true,
+  },
+  {
+    slug: 'fitness-beauty',
+    path: '/ai-videos/fitness-beauty',
+    industryName: 'Gyms & Salons',
+    headline: 'Videos that fill your classes and appointments',
+    description: 'Short, captioned promos for gyms, studios and salons.',
+    ideas: [
+      'Class or service promo',
+      'Meet the trainer or stylist',
+      'New offer announcement',
+      'Studio tour',
+      'How to book',
+    ],
+    note: 'No before-and-after claims or promised results.',
+    whatsappUrl:
+      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20fitness%20and%20beauty%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+    videoIds: [],
+    published: false,
+  },
+  {
+    slug: 'dental-physio',
+    path: '/ai-videos/dental-physio',
+    industryName: 'Dental, Cosmetic & Physio',
+    headline: 'Videos that help new patients feel at ease',
+    description:
+      'Short, captioned videos for dentists, cosmetic and physio clinics, using only wording you approve.',
+    ideas: [
+      'Meet the team',
+      'What to expect at your first visit',
+      'Clinic tour',
+      'How to book',
+      'Insurance and payment options explained',
+    ],
+    note: 'I use wording you supply and approve and avoid before-and-after images, patient testimonials and treatment claims.',
+    whatsappUrl:
+      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20clinic%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+    videoIds: [],
+    published: false,
+  },
+];
+
+export const PUBLISHED_AI_VIDEO_INDUSTRIES = AI_VIDEO_INDUSTRIES.filter(
+  (industry) => industry.published && industry.videoIds.length > 0
+);
+
+export const MORE_VIDEO_SAMPLES = VIDEO_SAMPLES.filter(
+  (sample) => !sample.industrySlug
+);
+
+export function getIndustryVideos(
+  industry: AiVideoIndustryConfig
+): VideoSample[] {
+  return industry.videoIds
+    .map((id) => VIDEO_SAMPLES.find((video) => video.id === id))
+    .filter((video): video is VideoSample => Boolean(video));
+}
+
+export function getPublishedIndustryByPath(
+  path: RoutePath
+): AiVideoIndustryConfig | undefined {
+  return PUBLISHED_AI_VIDEO_INDUSTRIES.find(
+    (industry) => industry.path === path
+  );
+}

@@ -34,7 +34,7 @@ const INCLUDED = [
 const QUESTIONS: FaqItem[] = [
   {
     question: 'How much does it cost?',
-    answer: `Projects start from ${SERVICE_PRICES.flyers}. The final price depends on the size and number of designs, and we'll send you a clear quote after your free mockup. No obligation.`,
+    answer: `Starting from ${SERVICE_PRICES.flyers}. The final price depends on the size and number of designs, and we'll send you a clear quote after your free mockup. No obligation. Prices in US dollars.`,
   },
   {
     question: 'Do you handle printing?',
@@ -141,6 +141,9 @@ export function FlyersPage() {
                       {SERVICE_PRICES.flyers}
                     </span>
                     . Every project is quoted after a free mockup and a short chat, so you only pay for what you need.
+                  </p>
+                  <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                    Prices in US dollars.
                   </p>
                   <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
                     Turnaround: [time].

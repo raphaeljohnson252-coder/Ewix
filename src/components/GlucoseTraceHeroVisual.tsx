@@ -14,7 +14,7 @@ const ACTIVE_CHECKPOINTS: ActiveCheckpoint[] = [
     y: 118,
     time: '00:00',
     label: 'Active · Global Night Desk',
-    windowNote: 'Australia daytime overlap (morning AEST)',
+    windowNote: 'Client daytime overlap worldwide',
   },
   {
     x: 150,

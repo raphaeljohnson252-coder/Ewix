@@ -18,7 +18,7 @@ interface HeaderProps {
 function getServiceFromPath(path: RoutePath): ServiceSlug | undefined {
   if (path === '/websites') return 'websites';
   if (path === '/flyers-and-print') return 'flyers';
-  if (path === '/ai-videos') return 'videos';
+  if (path.startsWith('/ai-videos')) return 'videos';
   return undefined;
 }
 
@@ -31,7 +31,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
   const isServiceActive =
     path === '/websites' ||
     path === '/flyers-and-print' ||
-    path === '/ai-videos';
+    path.startsWith('/ai-videos');
 
   const emailUrl = buildEmailUrl(getServiceFromPath(path));
 
@@ -156,7 +156,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
                       role="menuitem"
                       onClick={() => setServicesOpen(false)}
                       className={`block px-4 py-2.5 text-sm whitespace-nowrap transition-colors duration-150 hover:bg-ivory-muted hover:text-champagne-deep dark:hover:bg-obsidian-elevated dark:hover:text-champagne-light ${
-                        path === '/ai-videos'
+                        path.startsWith('/ai-videos')
                           ? 'font-semibold text-champagne-deep dark:text-champagne-light'
                           : 'text-ink dark:text-[#E8E6DF]'
                       }`}
@@ -272,7 +272,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
               <RouteLink
                 to="/ai-videos"
                 className={`rounded-lg px-5 py-2.5 ${
-                  path === '/ai-videos'
+                  path.startsWith('/ai-videos')
                     ? 'bg-ivory-muted text-champagne-deep dark:bg-obsidian-surface dark:text-champagne-light'
                     : 'text-ink-muted dark:text-[#C8C6BE]'
                 }`}

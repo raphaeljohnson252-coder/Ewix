@@ -88,7 +88,7 @@ const MARQUEE_ITEMS = [
   'Websites for health clinics',
   'Flyers & Print',
   'Plain-language AI Videos',
-  'Designed for Australian health businesses',
+  'Working with clients worldwide',
   'Free homepage mockup',
 ];
 
@@ -219,6 +219,9 @@ export function HomePage() {
                     </p>
                     <p className="font-mono-data pt-1 text-sm font-medium text-ink dark:text-[#E6C86E]">
                       {service.price}
+                    </p>
+                    <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                      Prices in US dollars.
                     </p>
                   </div>
 
@@ -508,7 +511,10 @@ export function HomePage() {
                     Clear pricing, no surprises
                   </h2>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Each service has a minimal starting price in dollars ({SERVICE_PRICES.websites} for websites, {SERVICE_PRICES.flyers} for flyers, {SERVICE_PRICES.videos} for AI videos). After your free mockup and a short chat, we send you a fixed quote for the whole project.
+                    Starting from {SERVICE_PRICES.websites} for websites, Starting from {SERVICE_PRICES.flyers} for flyers, and Starting from {SERVICE_PRICES.videos} for AI videos. After your free mockup and a short chat, we send you a fixed quote for the whole project.
+                  </p>
+                  <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                    Prices in US dollars.
                   </p>
                 </div>
                 <div className="relative z-10 mt-8">
@@ -527,7 +533,7 @@ export function HomePage() {
               <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 sm:p-9 dark:border-obsidian-border dark:bg-obsidian">
                 <div className="relative z-10 space-y-4">
                   <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance dark:text-[#F5F4F0]">
-                    Designed with Australian health advertising rules in mind
+                    Designed for clients worldwide with health advertising rules in mind
                   </h2>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
                     We use wording you supply and approve, and avoid claims like &quot;cures&quot; or &quot;reverses&quot;. Please check final wording with your own compliance adviser.

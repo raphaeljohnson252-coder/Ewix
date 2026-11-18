@@ -10,7 +10,7 @@ import { MagneticWrap, RevealBlock } from './LuxuryMotion';
 function getServiceFromPath(pathname: string): ServiceSlug | undefined {
   if (pathname === '/websites') return 'websites';
   if (pathname === '/flyers-and-print') return 'flyers';
-  if (pathname === '/ai-videos') return 'videos';
+  if (pathname.startsWith('/ai-videos')) return 'videos';
   return undefined;
 }
 

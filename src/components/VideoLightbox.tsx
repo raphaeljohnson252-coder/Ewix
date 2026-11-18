@@ -82,11 +82,19 @@ export function VideoLightbox({ video, onClose }: VideoLightboxProps) {
                 <video
                   key={video.id}
                   src={video.videoSrc}
+                  poster={video.thumbnailSrc}
                   controls
-                  autoPlay
                   playsInline
                   className="h-full w-full object-contain"
-                />
+                >
+                  <track
+                    kind="captions"
+                    src={video.captionsSrc}
+                    srcLang="en"
+                    label="English captions"
+                    default
+                  />
+                </video>
               </div>
             </div>
 

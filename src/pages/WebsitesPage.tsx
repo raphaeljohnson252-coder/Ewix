@@ -46,7 +46,7 @@ const CATEGORIES: WebsiteCategory[] = [
 const QUESTIONS: FaqItem[] = [
   {
     question: 'How much does it cost?',
-    answer: `Projects start from ${SERVICE_PRICES.websites}. The final price depends on the size of the project, and we'll send you a clear quote after your free mockup. No obligation.`,
+    answer: `Starting from ${SERVICE_PRICES.websites}. The final price depends on the size of the project, and we'll send you a clear quote after your free mockup. No obligation. Prices in US dollars.`,
   },
   {
     question: 'Can you use our own wording and photos?',
@@ -166,6 +166,9 @@ export function WebsitesPage() {
                       {SERVICE_PRICES.websites}
                     </span>
                     . Every project is quoted after a free mockup and a short chat, so you only pay for what you need.
+                  </p>
+                  <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                    Prices in US dollars.
                   </p>
                   <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
                     Turnaround: [time].
