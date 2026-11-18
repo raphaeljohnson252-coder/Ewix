@@ -134,7 +134,7 @@ export function WebsitesPage() {
       <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock>
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="lg:col-span-7">
                 <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">
                   What&apos;s included
@@ -242,7 +242,7 @@ export function WebsitesPage() {
             </div>
           </RevealBlock>
 
-          <StaggerGrid key={filter} className="mt-10 grid gap-8 md:grid-cols-2">
+          <StaggerGrid key={filter} className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
             {filteredProjects.map((project) => (
               <StaggerItem key={project.id}>
                 <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 transition-colors duration-200 hover:border-champagne/65 sm:p-6 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/55">

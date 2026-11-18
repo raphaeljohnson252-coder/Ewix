@@ -89,7 +89,7 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
             </span>
           </nav>
 
-          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
             {/* Left: Industry headline & description */}
             <HeroEntrance className="space-y-5 lg:col-span-5">
               <SplitHeadline
@@ -217,7 +217,7 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
       {extraCafeVideos.length > 0 && (
         <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
           <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
-            <StaggerGrid className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <StaggerGrid className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {extraCafeVideos.map((video) => (
                 <StaggerItem key={video.id}>
                   <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white/95 p-4 backdrop-blur-md sm:p-5 dark:border-obsidian-border dark:bg-obsidian-surface/90">
@@ -283,7 +283,7 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
       <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock>
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="space-y-6 lg:col-span-7">
                 <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">
                   Video ideas for you

@@ -119,12 +119,12 @@ export function HomePage() {
   };
 
   return (
-    <div>
+    <div className="min-w-0 overflow-x-clip">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <PageHeroBackdrop images={heroImages} intervalMs={5500} />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
             <HeroEntrance className="space-y-6 lg:col-span-6">
               <ParallaxText>
                 <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
@@ -203,7 +203,7 @@ export function HomePage() {
             </p>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-6 md:grid-cols-3">
+          <StaggerGrid className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
             {SERVICES.map((service) => (
               <StaggerItem key={service.title}>
                 <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-6 transition-colors duration-200 hover:border-champagne/70 sm:p-7 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/60">
@@ -259,16 +259,16 @@ export function HomePage() {
             </p>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-6 lg:grid-cols-12">
+          <StaggerGrid className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
             {/* Tile 1: Flagship Website Capture (Bento wide span) */}
-            <StaggerItem className="lg:col-span-7">
+            <StaggerItem className="min-w-0 lg:col-span-7">
               <SpotlightCard className="h-full rounded-xl border border-ivory-border bg-white transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
                 <button
                   type="button"
                   onClick={() => navigate('/websites')}
-                  className="relative z-10 flex h-full w-full flex-col justify-between p-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                  className="relative z-10 flex h-full w-full min-w-0 flex-col justify-between p-4 text-left sm:p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                 >
-                  <div className="aspect-[16/10] w-full overflow-hidden rounded-lg border border-ivory-border bg-obsidian dark:border-obsidian-border">
+                  <div className="aspect-[16/10] w-full min-w-0 overflow-hidden rounded-lg border border-ivory-border bg-obsidian dark:border-obsidian-border">
                     <img
                       src={featuredWebsite.imageSrc}
                       alt={featuredWebsite.imageAlt}
@@ -276,8 +276,8 @@ export function HomePage() {
                       className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.035]"
                     />
                   </div>
-                  <div className="mt-5 flex items-center justify-between gap-3 px-1">
-                    <div>
+                  <div className="mt-5 flex w-full min-w-0 items-center justify-between gap-3 px-1">
+                    <div className="min-w-0">
                       <p className="text-base font-semibold text-ink dark:text-[#F5F4F0]">
                         {featuredWebsite.clientName}, Websites
                       </p>
@@ -295,18 +295,18 @@ export function HomePage() {
             </StaggerItem>
 
             {/* Stacked right column: Flyers & Print + AI Videos */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-              <StaggerItem>
+            <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+              <StaggerItem className="min-w-0">
                 <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-4 transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
-                  <div className="relative z-10 flex h-full w-full flex-col justify-between">
-                    <div className="grid aspect-[16/9] w-full grid-cols-3 gap-2.5 overflow-hidden rounded-lg border border-ivory-border bg-obsidian p-2.5 dark:border-obsidian-border">
+                  <div className="relative z-10 flex h-full w-full min-w-0 flex-col justify-between">
+                    <div className="grid aspect-[16/9] w-full min-w-0 grid-cols-3 gap-2 overflow-hidden rounded-lg border border-ivory-border bg-obsidian p-2 sm:gap-2.5 sm:p-2.5 dark:border-obsidian-border">
                       {featuredFlyers.map((flyer) => (
                         <button
                           key={flyer.id}
                           type="button"
                           onClick={() => setSelectedFlyer(flyer)}
                           aria-label={`View flyer layout: ${flyer.title}`}
-                          className="group/flyer relative h-full w-full cursor-pointer overflow-hidden rounded-md border border-obsidian-border bg-obsidian-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                          className="group/flyer relative h-full w-full min-w-0 cursor-pointer overflow-hidden rounded-md border border-obsidian-border bg-obsidian-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                         >
                           <img
                             src={flyer.imageSrc}
@@ -319,8 +319,8 @@ export function HomePage() {
                       ))}
                     </div>
 
-                    <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                      <div className="min-w-0">
+                    <div className="mt-4 flex w-full min-w-0 flex-wrap items-center justify-between gap-2 px-1 sm:flex-nowrap">
+                      <div className="min-w-0 flex-1">
                         <p className="truncate text-base font-medium text-ink dark:text-[#F5F4F0]">
                           Healthcare Flyer Styles, Flyers &amp; Print
                         </p>
@@ -352,10 +352,10 @@ export function HomePage() {
                 </SpotlightCard>
               </StaggerItem>
 
-              <StaggerItem>
+              <StaggerItem className="min-w-0">
                 <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-4 transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/65">
-                  <div className="relative z-10 flex h-full w-full flex-col justify-between">
-                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-ivory-border bg-black dark:border-obsidian-border">
+                  <div className="relative z-10 flex h-full w-full min-w-0 flex-col justify-between">
+                    <div className="relative aspect-[16/9] w-full min-w-0 overflow-hidden rounded-lg border border-ivory-border bg-black dark:border-obsidian-border">
                       <video
                         src={featuredVideo.videoSrc}
                         controls
@@ -364,8 +364,8 @@ export function HomePage() {
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="mt-4 flex items-center justify-between gap-2 px-1">
-                      <div className="min-w-0">
+                    <div className="mt-4 flex w-full min-w-0 flex-wrap items-center justify-between gap-2 px-1 sm:flex-nowrap">
+                      <div className="min-w-0 flex-1">
                         <p className="truncate text-base font-medium text-ink dark:text-[#F5F4F0]">
                           {featuredVideo.title}, AI Videos
                         </p>
@@ -426,14 +426,14 @@ export function HomePage() {
             </RouteLink>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerGrid className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WEBSITE_PROJECTS.map((project) => (
               <StaggerItem key={project.id}>
                 <SpotlightCard className="h-full rounded-xl border border-ivory-border bg-ivory transition-colors duration-200 hover:border-champagne/75 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/65">
                   <button
                     type="button"
                     onClick={() => setSelectedProject(project)}
-                    className="relative z-10 flex h-full w-full flex-col text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                    className="relative z-10 flex h-full w-full min-w-0 flex-col text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-ivory-border bg-obsidian-surface dark:border-obsidian-border">
                       <img
@@ -446,7 +446,7 @@ export function HomePage() {
                         <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
                       </div>
                     </div>
-                    <div className="flex flex-1 flex-col justify-between p-4">
+                    <div className="flex min-w-0 flex-1 flex-col justify-between p-4">
                       <div>
                         <p className="text-xs text-ink-muted dark:text-[#96948C]">
                           {project.category}
@@ -479,7 +479,7 @@ export function HomePage() {
             </p>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerGrid className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step, index) => (
               <StaggerItem key={step.number}>
                 <div className="group space-y-3 border-t border-ivory-border pt-6 transition-colors duration-200 hover:border-champagne dark:border-obsidian-border">
@@ -503,7 +503,7 @@ export function HomePage() {
       <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock>
-            <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
               {/* How pricing works */}
               <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 sm:p-9 dark:border-obsidian-border dark:bg-obsidian">
                 <div className="relative z-10 space-y-4">

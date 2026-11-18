@@ -128,7 +128,7 @@ export function HeroEntrance({
     <motion.div
       ref={containerRef}
       style={{ y: parallaxY }}
-      className={className}
+      className={`min-w-0 ${className}`}
     >
       <motion.div
         initial="hidden"
@@ -271,7 +271,7 @@ export function SpotlightCard({
               transition: { type: 'spring', stiffness: 320, damping: 24 },
             }
       }
-      className={`group relative overflow-hidden ${className}`}
+      className={`group relative min-w-0 max-w-full overflow-hidden ${className}`}
     >
       {!shouldReduceMotion && (
         <motion.div
@@ -380,7 +380,7 @@ export function StaggerItem({
           transition: { duration: 0.56, ease: LUXURY_EASE },
         },
       }}
-      className={className}
+      className={`min-w-0 ${className}`}
     >
       {children}
     </motion.div>

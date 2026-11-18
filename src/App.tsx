@@ -64,7 +64,7 @@ function AppShell() {
   const activeIndustry = getPublishedIndustryByPath(path);
 
   return (
-    <div className="flex min-h-screen flex-col bg-ivory text-ink dark:bg-obsidian dark:text-[#F5F4F0]">
+    <div className="flex min-h-screen flex-col overflow-x-clip bg-ivory text-ink dark:bg-obsidian dark:text-[#F5F4F0]">
       <ScrollProgressBar />
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
 
@@ -90,7 +90,7 @@ function AppShell() {
         </>
       )}
 
-      <main className="relative flex-1">
+      <main className="relative min-w-0 flex-1 overflow-x-clip">
         <AnimatePresence mode="wait">
           <motion.div
             key={path}

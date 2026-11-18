@@ -27,6 +27,12 @@
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
   html {
     font-family: var(--font-sans);
     scroll-behavior: smooth;

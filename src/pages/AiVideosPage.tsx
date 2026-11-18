@@ -121,7 +121,7 @@ export function AiVideosPage() {
             </div>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid gap-8 md:grid-cols-2">
+          <StaggerGrid className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
             {PUBLISHED_AI_VIDEO_INDUSTRIES.map((industry) => {
               const industryVideos = getIndustryVideos(industry);
               const leadVideo = industryVideos[0];
@@ -183,7 +183,7 @@ export function AiVideosPage() {
       <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock>
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="lg:col-span-7">
                 <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">
                   What&apos;s included
@@ -258,7 +258,7 @@ export function AiVideosPage() {
               </div>
             </RevealBlock>
 
-            <StaggerGrid className="mt-10 grid gap-8 md:grid-cols-2">
+            <StaggerGrid className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
               {MORE_VIDEO_SAMPLES.map((sample) => (
                 <StaggerItem key={sample.id}>
                   <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-5 transition-colors duration-200 hover:border-champagne/65 sm:p-6 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/55">

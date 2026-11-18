@@ -106,7 +106,7 @@ export function ContactPage() {
           intervalMs={6000}
         />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Left column: Headline, text, direct email button */}
             <HeroEntrance className="space-y-6 lg:col-span-5">
               <ParallaxText>
