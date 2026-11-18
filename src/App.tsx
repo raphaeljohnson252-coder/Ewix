@@ -17,7 +17,7 @@ import {
   ScrollProgressBar,
 } from './components/LuxuryMotion';
 import { SharedCtaAndFooter } from './components/SharedCtaAndFooter';
-import { getPublishedIndustryByPath, RoutePath } from './data/siteContent';
+import { getPublishedIndustryByPath } from './data/siteContent';
 import { AiVideoIndustryPage } from './pages/AiVideoIndustryPage';
 import { AiVideosPage } from './pages/AiVideosPage';
 import { ContactPage } from './pages/ContactPage';
@@ -25,22 +25,7 @@ import { FlyersPage } from './pages/FlyersPage';
 import { HomePage } from './pages/HomePage';
 import { WebsitesPage } from './pages/WebsitesPage';
 import { RouterProvider, useRouter } from './router';
-
-const PAGE_TITLES: Record<RoutePath, string> = {
-  '/': 'Ewixstudio — Websites, Flyers & AI Videos for Health Businesses',
-  '/websites': 'Websites for Diabetes & Health Businesses — Ewixstudio',
-  '/flyers-and-print': 'Flyers & Print for Health Businesses — Ewixstudio',
-  '/ai-videos': 'AI Videos for Diabetes & Health Businesses — Ewixstudio',
-  '/ai-videos/health':
-    'Health Clinics & Dietitians AI Videos — Ewixstudio',
-  '/ai-videos/cafes': 'Cafes & Restaurants AI Videos — Ewixstudio',
-  '/ai-videos/real-estate': 'Real Estate AI Videos — Ewixstudio',
-  '/ai-videos/fitness-beauty': 'Gyms & Salons AI Videos — Ewixstudio',
-  '/ai-videos/online-shops': 'Online Shops AI Videos — Ewixstudio',
-  '/ai-videos/dental-physio':
-    'Dental, Cosmetic & Physio AI Videos — Ewixstudio',
-  '/contact': 'Contact Ewixstudio — Request a Free Homepage Mockup',
-};
+import { applyRouteSeo } from './seo/seoConfig';
 
 function AppShell() {
   const { path } = useRouter();
@@ -51,7 +36,7 @@ function AppShell() {
   });
 
   useEffect(() => {
-    document.title = PAGE_TITLES[path] || PAGE_TITLES['/'];
+    applyRouteSeo(path);
   }, [path]);
 
   const toggleTheme = () => {
