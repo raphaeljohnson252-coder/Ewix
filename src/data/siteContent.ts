@@ -597,7 +597,7 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
     ],
     note: 'I use wording you supply and approve and avoid treatment advice, results or health claims.',
     whatsappUrl:
-      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20health%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+      'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20health%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
     videoIds: ['diabetes-care-explainer'],
     published: true,
   },
@@ -616,7 +616,7 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
       'How to order and find us',
     ],
     whatsappUrl:
-      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20cafe%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+      'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20cafe%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
     videoIds: [
       'savore-gourmet-burger',
       'sample-kitchen-weekend',
@@ -641,7 +641,7 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
     ],
     note: "I use your real photos and details. I don't alter properties or invent features.",
     whatsappUrl:
-      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20real%20estate%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+      'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20real%20estate%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
     videoIds: ['maple-ridge-residences'],
     published: true,
   },
@@ -659,7 +659,7 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
       'Delivery and returns explained',
     ],
     whatsappUrl:
-      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20online%20shop%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+      'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20online%20shop%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
     videoIds: ['verdea-hydration-cream', 'velocity-x1-footwear'],
     published: true,
   },
@@ -678,7 +678,7 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
     ],
     note: 'No before-and-after claims or promised results.',
     whatsappUrl:
-      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20fitness%20and%20beauty%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+      'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20fitness%20and%20beauty%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
     videoIds: [],
     published: false,
   },
@@ -698,7 +698,7 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
     ],
     note: 'I use wording you supply and approve and avoid before-and-after images, patient testimonials and treatment claims.',
     whatsappUrl:
-      'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20clinic%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
+      'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20clinic%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
     videoIds: [],
     published: false,
   },
