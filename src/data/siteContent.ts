@@ -487,6 +487,54 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     industrySlug: 'cafes',
   },
   {
+    id: 'sample-kitchen-weekend',
+    title: 'Weekend Dining Offer',
+    category: 'Cafes & Restaurants',
+    length: '15s',
+    whereUsed: 'Instagram, TikTok & weekend specials',
+    whatItExplains:
+      'Atmospheric evening restaurant promo highlighting a Friday–Sunday set offer and warm table atmosphere.',
+    videoSrc: withBase(
+      'assets/aistudio/Evening_street_scene_restaurant___3ae722fd_d90fb330.mp4'
+    ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/sample-kitchen-weekend.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/sample-kitchen-weekend.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'cafes',
+  },
+  {
+    id: 'sample-kitchen-pasta',
+    title: 'Signature Tagliatelle',
+    category: 'Cafes & Restaurants',
+    length: '15s',
+    whereUsed: 'Dish spotlights, social feeds & booking promos',
+    whatItExplains:
+      'Close-up kitchen plating spotlight showcasing handmade pasta and inviting guests to book a table.',
+    videoSrc: withBase(
+      'assets/aistudio/Chef_plating_pasta_dish_b821646f_94b463c3.mp4'
+    ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/sample-kitchen-pasta.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/sample-kitchen-pasta.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'cafes',
+  },
+  {
+    id: 'sample-cafe-morning',
+    title: 'Morning Coffee & Avocado Toast',
+    category: 'Cafes & Restaurants',
+    length: '15s',
+    whereUsed: 'Morning cafe promos, Instagram Reels & weekend brunch menus',
+    whatItExplains:
+      'Warm barista latte pour and weekend brunch special clip with clear opening hours and location frame.',
+    videoSrc: withBase(
+      'assets/aistudio/Barista_pouring_milk_into_latte_4cfc6881_946b3753.mp4'
+    ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/sample-cafe-morning.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/sample-cafe-morning.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'cafes',
+  },
+  {
     id: 'velocity-x1-footwear',
     title: 'Velocity X1 Performance',
     category: 'Online Shops & Footwear',
@@ -569,7 +617,12 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
     ],
     whatsappUrl:
       'https://wa.me/2348140841284?text=Hi%20Raphael%2C%20I%20saw%20your%20cafe%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
-    videoIds: ['savore-gourmet-burger'],
+    videoIds: [
+      'savore-gourmet-burger',
+      'sample-kitchen-weekend',
+      'sample-kitchen-pasta',
+      'sample-cafe-morning',
+    ],
     published: true,
   },
   {

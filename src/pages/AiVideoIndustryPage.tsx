@@ -8,6 +8,8 @@ import {
   RevealBlock,
   SplitHeadline,
   SpotlightCard,
+  StaggerGrid,
+  StaggerItem,
 } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import { VideoLightbox } from '../components/VideoLightbox';
@@ -52,7 +54,11 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
     setSelectedVideo(null);
   }, [industry.slug]);
 
-  const activeVideo = videos[activeIndex] ?? videos[0];
+  const isCafeGalleryPage = industry.slug === 'cafes' && videos.length > 1;
+  const activeVideo = isCafeGalleryPage
+    ? videos[0]
+    : (videos[activeIndex] ?? videos[0]);
+  const extraCafeVideos = isCafeGalleryPage ? videos.slice(1) : [];
   const otherIndustries = PUBLISHED_AI_VIDEO_INDUSTRIES.filter(
     (item) => item.slug !== industry.slug
   );
@@ -168,7 +174,7 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
                       </button>
                     </div>
 
-                    {videos.length > 1 && (
+                    {!isCafeGalleryPage && videos.length > 1 && (
                       <div
                         role="tablist"
                         aria-label={`Select sample video for ${industry.industryName}`}
@@ -206,6 +212,72 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Additional Sample Concepts for /ai-videos/cafes */}
+      {extraCafeVideos.length > 0 && (
+        <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+            <StaggerGrid className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {extraCafeVideos.map((video) => (
+                <StaggerItem key={video.id}>
+                  <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white/95 p-4 backdrop-blur-md sm:p-5 dark:border-obsidian-border dark:bg-obsidian-surface/90">
+                    <div className="relative z-10 space-y-3.5">
+                      <div
+                        className={`relative w-full overflow-hidden rounded-lg border border-ivory-border bg-black dark:border-obsidian-border ${
+                          video.aspectRatio === '9:16'
+                            ? 'mx-auto aspect-[9/16] max-w-xs'
+                            : 'aspect-video'
+                        }`}
+                      >
+                        <video
+                          src={video.videoSrc}
+                          poster={video.thumbnailSrc}
+                          controls
+                          playsInline
+                          preload="metadata"
+                          className="h-full w-full object-cover"
+                        >
+                          <track
+                            kind="captions"
+                            src={video.captionsSrc}
+                            srcLang="en"
+                            label="English captions"
+                            default
+                          />
+                        </video>
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-between gap-2 px-1">
+                        <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                          <span className="font-mono-data">{video.length}</span>{' '}
+                          &middot; Captions on
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVideo(video)}
+                          aria-label={`Open ${video.title} in full-screen player`}
+                          className="inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-champagne-deep transition-colors duration-150 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:text-champagne-light dark:hover:text-[#F5F4F0]"
+                        >
+                          <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                          <span>Expand</span>
+                        </button>
+                      </div>
+
+                      <h3 className="px-1 font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
+                        {video.title}
+                      </h3>
+
+                      <p className="px-1 text-sm leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
+                        Sample concept. I&apos;ll make a version with your business name, services and photos.
+                      </p>
+                    </div>
+                  </SpotlightCard>
+                </StaggerItem>
+              ))}
+            </StaggerGrid>
+          </div>
+        </section>
+      )}
 
       {/* Video ideas for you + Short How it works */}
       <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
