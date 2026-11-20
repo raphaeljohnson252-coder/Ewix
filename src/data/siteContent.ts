@@ -420,6 +420,38 @@ export const VIDEO_SAMPLES: VideoSample[] = [
     industrySlug: 'health',
   },
   {
+    id: 'home-care-first-visit',
+    title: 'Home Care First Visit Explainer',
+    category: 'Home & Health Care',
+    length: '28s',
+    whereUsed: 'Care provider homepage, family onboarding & social feeds',
+    whatItExplains:
+      'Calm, reassuring overview showing families what happens during a first in-home care visit and how to book a conversation.',
+    videoSrc: withBase(
+      'assets/aistudio/Woman_planning_care_at_table_bb88f7ed_383409db.mp4'
+    ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/home-care-first-visit.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/home-care-first-visit.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'health',
+  },
+  {
+    id: 'willow-home-care',
+    title: 'Willow Home Care Conversation',
+    category: 'Home & Health Care',
+    length: '30s',
+    whereUsed: 'Care service landing pages, family enquiry ads & welcome clips',
+    whatItExplains:
+      'Warm patient and family-focused explainer highlighting a relaxed first conversation at home with clear phone and booking details.',
+    videoSrc: withBase(
+      'assets/aistudio/Woman_looking_at_phone_69f04d62_11027e76.mp4'
+    ),
+    thumbnailSrc: withBase('assets/aistudio/thumbs/willow-home-care.jpg'),
+    captionsSrc: withBase('assets/aistudio/captions/willow-home-care.vtt'),
+    aspectRatio: '16:9',
+    industrySlug: 'health',
+  },
+  {
     id: 'verdea-hydration-cream',
     title: 'Verdéa Botanical Hydration Cream',
     category: 'Online Shops & Skincare',
@@ -598,7 +630,11 @@ export const AI_VIDEO_INDUSTRIES: AiVideoIndustryConfig[] = [
     note: 'I use wording you supply and approve and avoid treatment advice, results or health claims.',
     whatsappUrl:
       'https://wa.me/19139903940?text=Hi%20Raphael%2C%20I%20saw%20your%20health%20video%20sample%20and%20I%27d%20like%20a%20free%20sample%20for%20my%20business.',
-    videoIds: ['diabetes-care-explainer'],
+    videoIds: [
+      'diabetes-care-explainer',
+      'home-care-first-visit',
+      'willow-home-care',
+    ],
     published: true,
   },
   {

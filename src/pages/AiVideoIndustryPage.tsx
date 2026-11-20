@@ -54,11 +54,13 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
     setSelectedVideo(null);
   }, [industry.slug]);
 
-  const isCafeGalleryPage = industry.slug === 'cafes' && videos.length > 1;
-  const activeVideo = isCafeGalleryPage
+  const hasExtraVideoGallery =
+    (industry.slug === 'cafes' || industry.slug === 'health') &&
+    videos.length > 1;
+  const activeVideo = hasExtraVideoGallery
     ? videos[0]
     : (videos[activeIndex] ?? videos[0]);
-  const extraCafeVideos = isCafeGalleryPage ? videos.slice(1) : [];
+  const extraVideos = hasExtraVideoGallery ? videos.slice(1) : [];
   const otherIndustries = PUBLISHED_AI_VIDEO_INDUSTRIES.filter(
     (item) => item.slug !== industry.slug
   );
@@ -174,7 +176,7 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
                       </button>
                     </div>
 
-                    {!isCafeGalleryPage && videos.length > 1 && (
+                    {!hasExtraVideoGallery && videos.length > 1 && (
                       <div
                         role="tablist"
                         aria-label={`Select sample video for ${industry.industryName}`}
@@ -213,12 +215,16 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
         </div>
       </section>
 
-      {/* Additional Sample Concepts for /ai-videos/cafes */}
-      {extraCafeVideos.length > 0 && (
+      {/* Additional Sample Concepts */}
+      {extraVideos.length > 0 && (
         <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
           <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
-            <StaggerGrid className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {extraCafeVideos.map((video) => (
+            <StaggerGrid
+              className={`grid grid-cols-1 gap-6 md:grid-cols-2 ${
+                extraVideos.length >= 3 ? 'lg:grid-cols-3' : ''
+              }`}
+            >
+              {extraVideos.map((video) => (
                 <StaggerItem key={video.id}>
                   <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white/95 p-4 backdrop-blur-md sm:p-5 dark:border-obsidian-border dark:bg-obsidian-surface/90">
                     <div className="relative z-10 space-y-3.5">
